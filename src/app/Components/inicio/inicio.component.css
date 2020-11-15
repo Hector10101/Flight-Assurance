@@ -1,0 +1,133 @@
+/* ------------------------- */
+/* Contenido Inicio 1        */
+/* ------------------------- */
+.bg-Inicio2{
+    background-color: #F7FFF7;
+}
+
+.txt-T{
+    font-size: 4.5em;
+}
+.btn-vermas{
+    margin-top: 10px;
+    padding: 5px 25px 5px 25px !important;
+    border-radius: 25px !important;
+    font-weight: bold !important;
+    background-color: #4ECDC4 !important;
+    color:  #F7FFF7 !important;
+}
+.Conte-1{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    align-items: center;
+}
+/* ------------------------- */
+/* Fin Contenido Inicio 1    */
+/* ------------------------- */
+
+/* ------------------------- */
+/* Contenido Inicio 2        */
+/* ------------------------- */
+
+/* ------------------------- */
+/* Contenido Vuelos interes  */
+/* ------------------------- */
+.vuelos-Interes{
+    background-color:  #4ECDC4;
+    padding: 20px;
+    border-radius: 25px;
+    text-align: center;
+}
+.vueloInte{
+    background-color:  #292F36;
+    padding: 5% 10% 5% 10%;
+    border-radius: 20px;
+    margin: 15% 0 15% 0;
+}
+.O-D{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5%;
+}
+.img-V-I{
+    margin-right: 10px;
+}
+.txt-V-I{
+    font-size: 1.3em;
+    margin-left: 10px;
+}
+.fecha-V-interes{
+    font-size: 16px;
+}
+.aerolinea-V-interes{
+    font-size: 13px;
+}
+.txt-precio{
+    padding-top: 5%;
+    text-align: left;
+}
+.btn-V-interes{
+    text-align: right;
+}
+.btn-vermas-V-interes{
+    background-color:  #FFE66D !important;
+    color:  #292F36 !important;
+    border-radius: 20px !important;
+    padding: 3px 18px 3px 18px !important;
+    border: none !important;
+}
+/* ------------------------- */
+/* Fiin Vuelos interes       */
+/* ------------------------- */
+
+/* ------------------------- */
+/* Contenido Info            */
+/* ------------------------- */
+.info{
+    background-color:  #292F36;
+    margin: 10px 0 10px 10px;
+    padding: 5%;
+    border-radius: 25px;
+}
+.btn-v{
+    text-align: right;
+    margin-top: 10px;
+}
+.conte-info-1{
+    text-align: center; 
+}
+.conte-info-3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+}
+.bloque-txt-btn-info-3{
+    display: inline-block;
+    margin-left: 5%;
+}
+/* ------------------------- */
+/* Fin Contenido Info        */
+/* ------------------------- */
+
+/* ------------------------- */
+/* Contenido Redes           */
+/* ------------------------- */
+.all-redes{
+    background-color: #292F36;
+    border-radius: 50px;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+}
+.Redes{
+    padding: 15px 5px 15px 5px;
+}
+/* ------------------------- */
+/* Fin Contenido Redes       */
+/* ------------------------- */
+
+/* ------------------------- */
+/* Fin Contenido Inicio 2    */
+/* ------------------------- */

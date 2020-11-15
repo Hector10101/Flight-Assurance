@@ -1,0 +1,59 @@
+/* ------------------------- */
+/* Barra de Navegación       */
+/* ------------------------- */
+.NombrePage{
+    display: inline;
+    font-size: 1.5em;
+}
+.imgLogo{
+    margin-left: 10px;
+    margin-top: 6px;
+}
+.Conten-Menu{
+    background-color: #F7FFF7;
+}
+.Conten-Menu .navbar{
+    padding: 15px 0 15px 0 !important;
+    background: none !important;
+}
+.navbar .nav-item{
+   
+    padding: 0;
+    margin: 0 10px 0 10px;
+    font-size: 1.2em;
+}
+.nav-link{
+    color: #292F36 !important;
+}
+.links:hover{
+    color: #4ECDC4 !important;
+    border-bottom: 3px solid #4ECDC4;
+}
+.active .nav-link{
+    font-weight: bold;
+    color: #4ECDC4 !important;
+    border-bottom: 3px solid #4ECDC4;
+}
+
+.btn-IniciarSS{
+    border-radius: 25px;
+    background-color: #4ECDC4;
+    padding: 0 100px 0 100px;
+}
+.Contenedor-InicioSS{
+    padding: 0 10px 2.5px 10px;
+}
+.img-InicioSS{
+    display:inline-block;
+}
+.txt-InicioSS{
+    display:inline-block;
+    
+}
+.navbar .nav-item .txtSS{
+    color: #F7F7F7 !important;
+}
+
+/* -------------------------- */
+/* Fin de Barra de Navegación */
+/* -------------------------- */

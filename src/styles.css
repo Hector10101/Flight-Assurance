@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+/* ------------------------- */
+/* General                   */
+/* ------------------------- */
+.colorV{
+    background-color: #4ECDC4;
+}
+.colorVB{
+    background-color: #292F36;
+}
+.colorR{
+    background-color: #FF6B6B;
+}
+.colorA{
+    background-color: #FFE66D;
+}
+.colorB{
+    background-color: #F7FFF7;
+}
+.bg-General{
+    background-color: #292F36;
+}
+
+.Conte-all{
+    margin: 0 55px 0 55px;
+}
+.txt-blanco{
+    color: #F7FFF7;
+}
+/* ------------------------- */
+/* Finl de General           */
+/* ------------------------- */

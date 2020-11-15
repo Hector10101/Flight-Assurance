@@ -1,0 +1,28 @@
+/* ------------------------- */
+/* Footer                    */
+/* ------------------------- */
+
+.bg-footer{
+    background-color:  #4ECDC4;
+    text-align: center;
+}
+.copy{
+    padding-top: 25px;
+}
+.R-Footer{
+
+    margin: 0 15px 10px 15px;
+    display: inline-block;
+}
+.imgs-R-Footer{
+    text-align: center;
+    padding: 5px 15px;
+}
+.terminos-footer{
+    color:  #F7F7F7 !important;
+    padding: 0 !important;
+}
+
+/* -------------------------- */
+/* Fin del Footer             */
+/* -------------------------- */
