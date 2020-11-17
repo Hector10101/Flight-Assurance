@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LolComponent } from './lol.component';
+import { VCompletarDatosComponent } from './v-completar-datos.component';
 
-describe('LolComponent', () => {
-  let component: LolComponent;
-  let fixture: ComponentFixture<LolComponent>;
+describe('VCompletarDatosComponent', () => {
+  let component: VCompletarDatosComponent;
+  let fixture: ComponentFixture<VCompletarDatosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LolComponent ]
+      declarations: [ VCompletarDatosComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LolComponent);
+    fixture = TestBed.createComponent(VCompletarDatosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

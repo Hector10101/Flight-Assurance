@@ -1,24 +1,23 @@
+<app-navegacion></app-navegacion>
 <div class="bg-General">
     <div class="Conte-all">
-        <div class="row Conte-1">
+        <div class="row Conte-C">
             <div class="col-lg-6">
                 <h2 class="txt-blanco txt-T">Encuentra <br>el vuelo que buscas</h2>
                 <h4 class="txt-blanco txt-ST">Sin tiempos de esperas<br>y al mejor precio</h4>
-                <button class="btn btn-vermas">Ver Más ></button>
+                <button class="btn btn-vermas"  [routerLink]="['../vuelos']">Ver Más ></button>
             </div>
             <div class="col-lg-6">
                 <div class=" mb-3" style="max-width: 900px;">
-                    <img src="../../../assets/img/hombreInicio.png" class="card-img" alt="...">
-                    
+                    <img src="../../../assets/img/hombreInicio.png" class="card-img" alt="..."> 
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <div class="bg-Inicio2">
     <div class="Conte-all">
-        <div class="row Conte-1">
+        <div class="row Conte-C">
             <div class="col-lg-2 vuelos-Interes">
                 <h4 class="txt-blanco">Vuelos de interés</h4>
                 <div class="vueloInte">
@@ -34,7 +33,7 @@
                         <h5 class="txt-blanco txt-precio">$000.00</h5>
                     </div>
                     <div class="btn-V-interes">
-                        <button class="btn btn-vermas-V-interes">Ver Más</button>
+                        <button class="btn btn-vermas-V-interes" [routerLink]="['../vuelos']">Ver Más</button>
                     </div>
                 </div>
                 <div class="vueloInte">
@@ -50,7 +49,7 @@
                         <h5 class="txt-blanco txt-precio">$000.00</h5>
                     </div>
                     <div class="btn-V-interes">
-                        <button class="btn btn-vermas-V-interes">Ver Más</button>
+                        <button class="btn btn-vermas-V-interes" [routerLink]="['../vuelos']">Ver Más</button>
                     </div>
                 </div>
                 <div class="vueloInte">
@@ -66,20 +65,20 @@
                         <h5 class="txt-blanco txt-precio">$000.00</h5>
                     </div>
                     <div class="btn-V-interes">
-                        <button class="btn btn-vermas-V-interes">Ver Más</button>
+                        <button class="btn btn-vermas-V-interes" [routerLink]="['../vuelos']">Ver Más</button>
                     </div>
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-lg-6 1">
+                    <div class="col-lg-6 ">
                         <div class="info ">
                             <h3 class="txt-blanco">Tienes dudas, <br>quejas o sugerencias</h3>
                             <div class="conte-info-1">
                                 <img src="../../../assets/img/contactus.png" style="width: 26rem;" class="card-img" alt="...">
                                 <br>
                                 <div class="btn-v">
-                                    <button class="btn btn-vermas ">Contactanos ></button>
+                                    <button class="btn btn-vermas " [routerLink]="['../contactanos']">Contactanos ></button>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +90,7 @@
                                 <img src="../../../assets/img/nosotrosus.png" style="width: 18rem;" class="card-img" alt="...">
                                 <br>
                                 <div class="btn-v">
-                                    <button class="btn btn-vermas ">Nosotros ></button>
+                                    <button class="btn btn-vermas " [routerLink]="['../nosotros']">Nosotros ></button>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +100,7 @@
                             <img src="../../../assets/img/lugares.png" style="width: 22rem;" class="card-img" alt="...">
                             <div class="bloque-txt-btn-info-3">
                                 <h3 class="txt-blanco ">Viaja por todo el mundo<br>sin limites</h3>
-                                <button class="btn btn-vermas">Ver Más ></button>
+                                <button class="btn btn-vermas" [routerLink]="['../vuelos']">Ver Más ></button>
                             </div>
                         </div>
                     </div>
@@ -125,8 +124,8 @@
                         </a>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
 </div>
+<app-footer></app-footer>

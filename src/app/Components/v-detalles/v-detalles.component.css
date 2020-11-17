@@ -1,31 +1,23 @@
-.login-c{
+.detalles-c{
     min-height: 100vh;
 }
 .Conte-C{
     display: flex;
     justify-content: center;
+    align-content: center;
 }
-.conten-contacta{
-    background-color: #4ECDC4;
-    border-radius: 20px;
-    padding: 8%;
-    text-align: center;
-}
-.logo{
+.conten-datos{
     background-color: #F7FFF7;
-    border-radius: 55px;
-    padding: 10px 0 10px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-radius: 25px;
+    padding: 8%;
 }
-.txt-logo{
-    margin-bottom: 30px;
+.txt-info{
+    font-size: 18px;
 }
-.conten-btn{
+.txt-btn-PaRe{
     text-align: right;
 }
-.btn-contact{
+.btn-PaRe{
     background-color: #FFE66D;
     padding: 6px 30px 6px 30px;
     border-radius: 25px;
@@ -33,11 +25,26 @@
     -webkit-box-shadow: 3px 3px 10px -2px  #292F36;
     box-shadow: 3px 3px 10px -2px #292F36;
 }
-.btn-contact:hover{
+.btn-PaRe:hover{
     box-shadow:   1px 1px 4px 0px #292F36;
 }
-.txt-contact{
+
+.txt-PaRe{
     font-weight: 600;
     font-size: 1.2em;
     color: #292F36;
+}
+
+.txt-clase{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.txt-radio{
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.r-clase{
+    margin-bottom: 5px;
 }

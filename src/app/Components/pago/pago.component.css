@@ -1,28 +1,34 @@
-.login-c{
+.pago-c{
     min-height: 100vh;
 }
 .Conte-C{
     display: flex;
     justify-content: center;
 }
-.conten-registro{
+.conten-pago{
     background-color: #4ECDC4;
     border-radius: 20px;
     padding: 8%;
     text-align: center;
 }
-.logo{
-    background-color: #F7FFF7;
-    border-radius: 55px;
-    padding: 10px 0 10px 0;
+.txt-titulo{
+    padding-bottom: 15px;
+}
+.content-img-card{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10%;
 }
-.txt-logo{
-    margin-bottom: 30px;
+.credit-cards{
+    margin: 0 15px 0 15px;
 }
-.btn-registro{
+.g-radio-btn{
+    text-align: left;
+}
+.conten-btn{
+    text-align: right;
+}
+.btn-pagar{
     background-color: #FFE66D;
     padding: 6px 30px 6px 30px;
     border-radius: 25px;
@@ -30,21 +36,11 @@
     -webkit-box-shadow: 3px 3px 10px -2px  #292F36;
     box-shadow: 3px 3px 10px -2px #292F36;
 }
-.btn-registro:hover{
+.btn-pagar:hover{
     box-shadow:   1px 1px 4px 0px #292F36;
 }
-.recupe{
-    padding-top: 15px;
-}
-.txt-registro{
+.txt-pagar{
     font-weight: 600;
     font-size: 1.2em;
-}
-.txt-Login{
-    font-weight: 500;
     color: #292F36;
-}
-.txt-Login:hover{
-    color: #FFE66D;
-    text-decoration: none;
 }

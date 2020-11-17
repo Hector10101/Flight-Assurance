@@ -1,7 +1,7 @@
 <div class="Conten-Menu">
     <nav class="Conte-all navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <h1 class="NombrePage">Flitght Assurance</h1> 
+        <a class="navbar-brand" href="/" [routerLink]="['']">
+            <h1 class="NombrePage" >Flight Assurance</h1> 
             <img src="../../../assets/img/planelogo.png" width="30" height="30" class="imgLogo align-top" alt="" loading="lazy">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,18 +11,18 @@
         <div class="collapse navbar-collapse text-right" id="navbarTogglerDemo03">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link links" href="#">Inicio</a>
+              <a class="nav-link links" href="/" [routerLink]="['']" >Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link links" href="#">Vuelos</a>
+              <a class="nav-link links" href="/" [routerLink]="['../vuelos']">Vuelos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link links" href="#">Nostros</a>
+                <a class="nav-link links" href="/" [routerLink]="['../nosotros']">Nostros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link links" href="#">Contactanos</a>
+                <a class="nav-link links" href="/" [routerLink]="['../contactanos']">Contactanos</a>
             </li>
-            <a href="#">
+            <a href="/"  [routerLink]="['../login']">
                 <li class="nav-item btn-IniciarSS">
                     <div class="Contenedor-InicioSS">
                         <div class="img-InicioSS">

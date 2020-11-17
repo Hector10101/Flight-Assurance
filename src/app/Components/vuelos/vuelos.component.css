@@ -1,0 +1,105 @@
+.vuelos-c{
+    min-height: 100vh;
+}
+.Conte-C{
+    padding-top: 3%;
+}
+.barra-B{
+    background-color: #F7FFF7;
+    padding: 20px 75px 20px 75px;
+    border-radius: 55px;   
+}
+.btn-buscar{
+    margin-left: 100px; 
+}
+.btn-buscar:hover{
+    cursor: pointer;
+}
+.Contenedor-barra-B{
+    display: flex;
+    justify-content: center;
+    padding-bottom:1%;
+}
+.inputs-B{
+    border-radius: 50px;
+}
+.inputs-B:focus{
+    box-shadow: 0px 0px 1px 3px  #FFE66D !important;
+    border-color:  #ffe76d !important;
+}
+/* ------------------------- */
+/* Cord filtros              */
+/* ------------------------- */
+
+.filtro-V{
+    border-radius: 25px;
+    min-height: 200px;
+    padding: 15px;
+    margin-top: 10%;
+}
+.txt-fi{
+    text-align: right;
+}
+.position-fixed{
+    margin-top: 12%;
+}
+
+/* ------------------------- */
+/* Cord info de vuelos       */
+/* ------------------------- */
+.txt-O-D{
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+.fecha-vuelo{
+    font-size: 1.1em;
+}
+.aerolinea-vuelo{
+    font-size: 1em;
+}
+.precio-vuelo{
+    text-align: left;
+}
+.txt-precio{
+    font-size: 1.6em;
+    font-weight: 600;
+}
+.vuelo-vuelos{
+    background-color: #F7FFF7;
+    border-radius: 25px;
+    padding: 15px 30px 20px 30px;
+    margin: 15px 5px 15px 5px;
+    text-align: center;
+    box-shadow:   3px 3px 8px 0px #292F36;
+}
+
+/* ------------------------- */
+/* Fin cord info de vuelos   */
+/* ------------------------- */
+
+
+/* ------------------------- */
+/* Boton de ver mas          */
+/* ------------------------- */
+.btn-vermas-Vuelo{
+    background-color: #FFE66D;
+    padding: 6px 15px 6px 15px;
+    border-radius: 25px;
+    -moz-box-shadow: 3px 3px 10px -2px  #292F36;
+    -webkit-box-shadow: 3px 3px 10px -2px  #292F36;
+    box-shadow: 3px 3px 10px -2px #292F36;
+}
+.btn-vermas-Vuelo:hover{
+    box-shadow: 1px 1px 4px 0px #292F36;
+}
+.btn-vuelo{
+    text-align: right;
+}
+.txt-mas{
+    font-weight: 600;
+    font-size: 1.2em;
+}
+/* ------------------------- */
+/* Fin boton de ver mas      */
+/* ------------------------- */

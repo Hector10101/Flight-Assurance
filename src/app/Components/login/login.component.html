@@ -1,1 +1,31 @@
-<p>login works!</p>
+<app-navegacion></app-navegacion>
+<div class="bg-General login-c">
+    <div class="Conte-all">
+        <div class="row Conte-C">
+            <div class="col-lg-6 conte-img">
+                <div class=" mb-3 " style="max-width: 500px;">
+                    <img src="../../../assets/img/login.png" class="card-img" alt="..."> 
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="conten-loging">
+                    <img src="../../../assets/img/user.png" width="100" height="100" class="img-login" alt="..."> 
+                    <form>
+                        <div class="form-group">
+                          <input type="text" class="inputs-A form-control" id="" placeholder="Usuario">
+                        </div>
+                        <div class="form-group">
+                          <input type="password" class="inputs-A form-control" id="" placeholder="Contraseña">
+                        </div>
+                        <button type="submit" class="btn btn-Login"><span class="txt-login">Iniciar Sesión</span></button>
+                    </form>
+                        <div class="recupe">
+                          <a href="#" class=" txt-Recupe">¿Has olvidado la contraseña?</a>
+                        </div>
+                      <span class="txt-blanco">¿No tienes una cuenta? <a href="/" [routerLink]="['../registro']" class="txt-negro txt-Regist">Registrate</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
