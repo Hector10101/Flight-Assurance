@@ -9,14 +9,20 @@
                             <div class="row">
                                 <img src="../../../assets/img/take-off.png" width="40" height="40" class="img-V-I  align-top">
                                 <div class="col">
-                                <input type="text" class="inputs-B form-control" placeholder="Origen">
+                                <select name="select" class="inputs-B form-control" [(ngModel)] = "paisorigen">
+                                    <option>Origen</option>
+                                    <option *ngFor="let paisO of listado['Countries']" [value]="paisO.Code">{{paisO.Name}}</option>
+                                </select>
                                 </div>
                                 <img src="../../../assets/img/planeon.png" width="40" height="40" class="img-V-I  align-top">
                                 <div class="col">
-                                
-                                <input type="text" class="inputs-B form-control" placeholder="Destino">
+                                    
+                                    <select name="select" class="inputs-B form-control" [(ngModel)] = "paisdestino">
+                                        <option>Destino</option>
+                                        <option  [value]="paisD.Code" *ngFor="let paisD of listado['Countries']">{{paisD.Name}}</option>
+                                    </select>
                                 </div>
-                                <img src="../../../assets/img/globe.png" width="45" height="45" class="btn-buscar  align-top">
+                                <img src="../../../assets/img/globe.png" width="45" height="45" class="btn-buscar align-top" (click)="getPaisesSeleccionado();">
                             </div>
                         </form>
                     </div>
@@ -32,17 +38,12 @@
                             </div>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input  ">
-                            <label class="custom-control-label " for="customRadio1">Todas la escalas</label>
+                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" (click)="filtroEscala(false)">
+                            <label class="custom-control-label " for="customRadio1">Con escalas</label>
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label  " for="customRadio2">Hasta 1 escala</label>
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" (click)="filtroEscala(true)">
                             <label class="custom-control-label" for="customRadio3">Directos</label>
                         </div>
                         
@@ -53,127 +54,47 @@
                             <h4 class="txt-negro">Presupuesto</h4>
                         </div>
                         <div class="txt-fi">
-                            <label for="customRange3">$000.00</label>
+                            <label for="customRange3">{{MontoPrecio}}</label>
                         </div>
-                        <input type="range" class="custom-range" min="0" max="1000" step="0.5" id="customRange3">
-                        
-                        <div class="vueloInte">
-                            <h4 class="txt-negro">Duración</h4>
-                        </div>
-                        <div class="txt-fi">
-                            <label for="customRange3">0 horas</label>
-                        </div>
-                        <input type="range" class="custom-range" min="0" max="12" step="0.5" id="customRange3">
+                        <input name="customRange3" type="range" class="custom-range" min="0" max="1000" step="100" id="customRange3" value="0" #rangoPrecio (change)="filtradodePrecio(rangoPrecio);" >
                     </div>   
                 </div>      
             </div>
             <div class="col-lg-8">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 ">
+                    <div class="col-lg-4 col-md-6" *ngFor="let vuelos of TodoslosVuelos['Quotes']; let indice=index">
                         <div class="vuelo-vuelos">
                             <img src="../../../assets/img/plane.png" width="65" height="65" class="img-V-I  align-top">
                             <div class="O-D">
-                                <span class="txt-negro txt-O-D">DO to PR</span>
+                                <span class="txt-negro txt-O-D">{{ruta[indice]}}</span>
                             </div>
                             <div class="info-vuelo">
-                                <h5 class="txt-negro fecha-vuelo">DD/MM/YYYY</h5>
-                                <h6 class="txt-negro aerolinea-vuelo">American Airline</h6>
+                                <h5 class="txt-negro fecha-vuelo">{{fecha[indice]}}</h5>
+                                <h6 class="txt-negro aerolinea-vuelo">{{aereolinea[indice]}}</h6>
                             </div>
                             <div class="precio-vuelo">
-                                <h5 class="txt-negro txt-precio">$000.00</h5>
+                                <h5 class="txt-negro txt-precio">${{precio[indice]}}</h5>
                             </div>
                             <div class="btn-vuelo">
                                 <button class="btn btn-vermas-Vuelo" [routerLink]="['../detallesvuelo']"><span class="txt-mas">Ver Más</span></button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 ">
+                    <div class="col-lg-4 col-md-6" *ngFor="let vuelos of TodoslosVuelos1['Quotes']; let indice=index">
                         <div class="vuelo-vuelos">
                             <img src="../../../assets/img/plane.png" width="65" height="65" class="img-V-I  align-top">
                             <div class="O-D">
-                                <span class="txt-negro txt-O-D">DO to PR</span>
+                                <span class="txt-negro txt-O-D">{{ruta1[indice]}}</span>
                             </div>
                             <div class="info-vuelo">
-                                <h5 class="txt-negro fecha-vuelo">DD/MM/YYYY</h5>
-                                <h6 class="txt-negro aerolinea-vuelo">American Airline</h6>
+                                <h5 class="txt-negro fecha-vuelo">{{fecha1[indice]}}</h5>
+                                <h6 class="txt-negro aerolinea-vuelo">{{aereolinea1[indice]}}</h6>
                             </div>
                             <div class="precio-vuelo">
-                                <h5 class="txt-negro txt-precio">$000.00</h5>
+                                <h5 class="txt-negro txt-precio">${{precio1[indice]}}</h5>
                             </div>
                             <div class="btn-vuelo">
                                 <button class="btn btn-vermas-Vuelo" [routerLink]="['../detallesvuelo']"><span class="txt-mas">Ver Más</span></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 ">
-                        <div class="vuelo-vuelos">
-                            <img src="../../../assets/img/plane.png" width="65" height="65" class="img-V-I  align-top">
-                            <div class="O-D">
-                                <span class="txt-negro txt-O-D">DO to PR</span>
-                            </div>
-                            <div class="info-vuelo">
-                                <h5 class="txt-negro fecha-vuelo">DD/MM/YYYY</h5>
-                                <h6 class="txt-negro aerolinea-vuelo">American Airline</h6>
-                            </div>
-                            <div class="precio-vuelo">
-                                <h5 class="txt-negro txt-precio">$000.00</h5>
-                            </div>
-                            <div class="btn-vuelo">
-                                <button class="btn btn-vermas-Vuelo"><span class="txt-mas">Ver Más</span></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 ">
-                        <div class="vuelo-vuelos">
-                            <img src="../../../assets/img/plane.png" width="65" height="65" class="img-V-I  align-top">
-                            <div class="O-D">
-                                <span class="txt-negro txt-O-D">DO to PR</span>
-                            </div>
-                            <div class="info-vuelo">
-                                <h5 class="txt-negro fecha-vuelo">DD/MM/YYYY</h5>
-                                <h6 class="txt-negro aerolinea-vuelo">American Airline</h6>
-                            </div>
-                            <div class="precio-vuelo">
-                                <h5 class="txt-negro txt-precio">$000.00</h5>
-                            </div>
-                            <div class="btn-vuelo">
-                                <button class="btn btn-vermas-Vuelo"><span class="txt-mas">Ver Más</span></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 ">
-                        <div class="vuelo-vuelos">
-                            <img src="../../../assets/img/plane.png" width="65" height="65" class="img-V-I  align-top">
-                            <div class="O-D">
-                                <span class="txt-negro txt-O-D">DO to PR</span>
-                            </div>
-                            <div class="info-vuelo">
-                                <h5 class="txt-negro fecha-vuelo">DD/MM/YYYY</h5>
-                                <h6 class="txt-negro aerolinea-vuelo">American Airline</h6>
-                            </div>
-                            <div class="precio-vuelo">
-                                <h5 class="txt-negro txt-precio">$000.00</h5>
-                            </div>
-                            <div class="btn-vuelo">
-                                <button class="btn btn-vermas-Vuelo"><span class="txt-mas">Ver Más</span></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 ">
-                        <div class="vuelo-vuelos">
-                            <img src="../../../assets/img/plane.png" width="65" height="65" class="img-V-I  align-top">
-                            <div class="O-D">
-                                <span class="txt-negro txt-O-D">DO to PR</span>
-                            </div>
-                            <div class="info-vuelo">
-                                <h5 class="txt-negro fecha-vuelo">DD/MM/YYYY</h5>
-                                <h6 class="txt-negro aerolinea-vuelo">American Airline</h6>
-                            </div>
-                            <div class="precio-vuelo">
-                                <h5 class="txt-negro txt-precio">$000.00</h5>
-                            </div>
-                            <div class="btn-vuelo">
-                                <button class="btn btn-vermas-Vuelo"><span class="txt-mas">Ver Más</span></button>
                             </div>
                         </div>
                     </div>

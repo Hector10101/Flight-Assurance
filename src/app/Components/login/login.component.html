@@ -12,12 +12,12 @@
                     <img src="../../../assets/img/user.png" width="100" height="100" class="img-login" alt="..."> 
                     <form>
                         <div class="form-group">
-                          <input type="text" class="inputs-A form-control" id="" placeholder="Usuario">
+                          <input type="text" class="inputs-A form-control" placeholder="Usuario" #usuario>
                         </div>
                         <div class="form-group">
-                          <input type="password" class="inputs-A form-control" id="" placeholder="Contraseña">
+                          <input type="password" class="inputs-A form-control" placeholder="Contraseña" #password>
                         </div>
-                        <button type="submit" class="btn btn-Login"><span class="txt-login">Iniciar Sesión</span></button>
+                        <button type="" class="btn btn-Login"><span class="txt-login" (click)="Loguearse(usuario,password)">Iniciar Sesión</span></button>
                     </form>
                         <div class="recupe">
                           <a href="#" class=" txt-Recupe">¿Has olvidado la contraseña?</a>
