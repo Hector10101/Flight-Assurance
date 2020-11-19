@@ -1,9 +1,8 @@
-.vuelos-c{
+.conte-v{
     min-height: 100vh;
+
 }
-.Conte-C{
-    padding-top: 3%;
-}
+
 .barra-B{
     background-color: #F7FFF7;
     padding: 20px 75px 20px 75px;
@@ -18,8 +17,10 @@
 .Contenedor-barra-B{
     display: flex;
     justify-content: center;
+    padding-top: 3%;
     padding-bottom:1%;
 }
+
 .inputs-B{
     border-radius: 50px;
 }
@@ -33,16 +34,17 @@
 
 .filtro-V{
     border-radius: 25px;
-    min-height: 200px;
-    padding: 15px;
+    padding: 35px;
     margin-top: 10%;
+}
+
+.positionFixed{
+    position: fixed;
 }
 .txt-fi{
     text-align: right;
 }
-.position-fixed{
-    margin-top: 12%;
-}
+
 
 /* ------------------------- */
 /* Cord info de vuelos       */

@@ -1,9 +1,9 @@
 <app-navegacion></app-navegacion>
-<div class="bg-General vuelos-c">
-    <div class="Conte-all">
-        <div class="row Conte-C">
+<div class="bg-General conte-v">
+    <div class="Conte-all ">
+        <div class="row ">
             <div class="col-lg-12">
-                <div class="Contenedor-barra-B ">
+                <div class="Contenedor-barra-B  ">
                     <div class="barra-B ">
                         <form>
                             <div class="row">
@@ -26,11 +26,10 @@
                             </div>
                         </form>
                     </div>
-                    
-                </div>
+                </div>                
             </div>
-            <div class="col-lg-2  ">
-                <div class="filtros ">
+            <div class="col-lg-2   ">
+                <div class="positionFixed">
                     <div class="filtro-V bgB">
                         <div>
                             <div class="vueloInte">
@@ -38,15 +37,19 @@
                             </div>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" (click)="filtroEscala(false)">
+                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" (click)="filtroEscala(0)">
                             <label class="custom-control-label " for="customRadio1">Con escalas</label>
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" (click)="filtroEscala(true)">
-                            <label class="custom-control-label" for="customRadio3">Directos</label>
+                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" (click)="filtroEscala(1)">
+                            <label class="custom-control-label" for="customRadio2">Directos</label>
                         </div>
-                        
+
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio3" checked name="customRadio" class="custom-control-input" (click)="filtroEscala(2)">
+                            <label class="custom-control-label"  for="customRadio3">Todos</label>
+                        </div>
                     </div>   
 
                     <div class="filtro-V bgB">
@@ -62,6 +65,7 @@
             </div>
             <div class="col-lg-8">
                 <div class="row">
+                    
                     <div class="col-lg-4 col-md-6" *ngFor="let vuelos of TodoslosVuelos['Quotes']; let indice=index">
                         <div class="vuelo-vuelos">
                             <img src="../../../assets/img/plane.png" width="65" height="65" class="img-V-I  align-top">
@@ -101,23 +105,26 @@
                 </div> 
             </div>
             <div class="col-lg-1 ml-5">
-                <div class="all-redes   bgB">
-                    <div class="Redes R-instagram">
-                        <a href="#">
-                            <img src="../../../assets/img/instagram.png" style="width: 3rem;"  class="card-img">
-                        </a>
-                    </div>
-                    <div class="Redes R-facebook">
-                        <a href="#">
-                            <img src="../../../assets/img/facebook.png" style="width: 3rem;" class="card-img">
-                        </a>
-                    </div>
-                    <div class="Redes R-reddit">
-                        <a href="#">
-                            <img src="../../../assets/img/reddit.png" style="width: 3rem;" class="card-img">
-                        </a>
+                <div class="positionFixed">
+                    <div class="all-redes   bgB">
+                        <div class="Redes R-instagram">
+                            <a href="#">
+                                <img src="../../../assets/img/instagram.png" style="width: 3rem;"  class="card-img">
+                            </a>
+                        </div>
+                        <div class="Redes R-facebook">
+                            <a href="#">
+                                <img src="../../../assets/img/facebook.png" style="width: 3rem;" class="card-img">
+                            </a>
+                        </div>
+                        <div class="Redes R-reddit">
+                            <a href="#">
+                                <img src="../../../assets/img/reddit.png" style="width: 3rem;" class="card-img">
+                            </a>
+                        </div>
                     </div>
                 </div>
+                
                 
             </div>
         </div>

@@ -1,4 +1,5 @@
-export interface administrador{
+// tslint:disable-next-line: class-name
+export interface administrador {
     Id?: number;
     nombre: string;
     apellido: string;
@@ -6,5 +7,4 @@ export interface administrador{
     usuario: string;
     password: string;
     fecha_contrato: string;
-
-} 
+}

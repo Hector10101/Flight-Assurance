@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RouterModule, Routes, Router } from '@angular/router';
+import {RouterModule, Routes, Router, Data } from '@angular/router';
 import {VuelosService} from 'src/app/servicios/vuelos.service';
 import { listadopaises } from 'src/app/modelo/listadopaises';
 import { delay, retry, retryWhen } from 'rxjs/operators';
@@ -10,7 +10,18 @@ import { delay, retry, retryWhen } from 'rxjs/operators';
   styleUrls: ['./vuelos.component.css']
 })
 export class VuelosComponent implements OnInit {
-  public listado: any=[]; 
+
+  constructor(private VuelosServices: VuelosService, private router: Router) {
+    this.MontoPrecio = '$000.00';
+    this.MontoGlobal = 0;
+    this.EscalaGlobal = null;
+    this.paisorigen = 'DO';
+    this.paisdestino = '';
+    this.getListadodePaises();
+    this.getTodosLosVuelos(this.getCurrentDateMasUno(), this.paisorigen, this.paisdestino, this.MontoGlobal , this.EscalaGlobal);
+
+   }
+  public listado: any = [];
   public paisorigen: any;
   public paisdestino: any;
 
@@ -21,7 +32,7 @@ export class VuelosComponent implements OnInit {
   public AereopuertoDestino: any = [];
   public TodoslosVuelos: any = [];
   public TodoslosVuelos1: any = [];
-  private fechaactual= new Date();
+  private fechaactual = new Date();
   public ruta: any = [];
   public fecha: any = [];
   public aereolinea: any = [];
@@ -36,36 +47,44 @@ export class VuelosComponent implements OnInit {
 
 
   private i: any;
+  private x: any;
   private nOrigen: any;
   private nDestino: any;
 
   public rangoPrecio: any;
   public MontoPrecio: any;
 
+      // tslint:disable-next-line: member-ordering
+      private cortarfecha: any;
 
-  constructor(private VuelosServices: VuelosService, private router: Router) {
-    this.MontoPrecio= "$000.00"; 
-    this.getListadodePaises();
-    this.getTodosLosVuelos(this.getCurrentDateMasUno(),"DO","US",0,null); 
-   }
+      // tslint:disable-next-line: member-ordering
+      public ArregloFiltros: any = [];
+      public ArregloFiltros1: any = [];
+      public Arreglo2Filtros: any = [];
+      public Arreglo2Filtros1: any = [];
+          public MontoGlobal: any;
+          public EscalaGlobal: any;
+
 
   ngOnInit(): void {
-   
   }
- 
+  // tslint:disable-next-line: typedef
   getListadodePaises(){
     this.VuelosServices.ObtenerNombredePaises().subscribe((data: {}) => {
-        this.listado = data; 
-        //console.log(this.listado);
+        this.listado = data;
+        // console.log(this.listado);
       });
     }
+    // tslint:disable-next-line: typedef
     getPaisesSeleccionado(){
 
-      for(let pais of this.listado['Countries']){
-        if(this.paisdestino == pais.Code){
-            this.Nombrepaisdestino = pais.Name;
+      for (const pais of this.listado.Countries){
+        // tslint:disable-next-line: triple-equals
+        if (this.paisdestino == pais.Code){
+          this.Nombrepaisdestino = pais.Name;
         }
-        if(this.paisorigen == pais.Code){
+        // tslint:disable-next-line: triple-equals
+        if (this.paisorigen == pais.Code){
           this.Nombrepaisorigen = pais.Name;
         }
       }
@@ -79,174 +98,235 @@ export class VuelosComponent implements OnInit {
      /* console.log("Destino: " +this.paisdestino);
       console.log("Origen: " +this.paisorigen);*/
 
-      this.getTodosLosVuelos(this.getCurrentDateMasUno(),this.paisorigen,this.paisdestino,0,null); 
-
-    } 
-
-      private cortarfecha: any;
-
-      public ArregloFiltros: any = [];
-      public ArregloFiltros1: any = [];
-    getTodosLosVuelos(fecha: any, origen: any, destino: any, precio: number, escala:any){
+      this.getTodosLosVuelos(this.getCurrentDateMasUno(), this.paisorigen, this.paisdestino, this.MontoGlobal, this.EscalaGlobal);
+    }
+    // tslint:disable-next-line: typedef
+    getTodosLosVuelos(fecha: any, origen: any, destino: any, precio: number, escala: any){
      this.VuelosServices.ObtenerTodosLosVuelos(fecha, origen, destino).subscribe((data: {}) => {
-        this.TodoslosVuelos= data; 
+        this.TodoslosVuelos = data;
         this.i = 0;
 
-        if((precio < 100 && escala==null)){
-          for( let datos of this.TodoslosVuelos['Quotes']){
-            this.cortarfecha = datos['OutboundLeg'].DepartureDate;
-            this.fecha[this.i] = this.cortarfecha.slice(0,10);
-            this.precio[this.i] = datos.MinPrice;
-            for(let airline of this.TodoslosVuelos['Carriers']){
-              if(datos['OutboundLeg']['CarrierIds'][0]== airline.CarrierId){
+        console.log(this.TodoslosVuelos);
+        if ((precio < 100 && escala === null)){
+          for ( const datos of this.TodoslosVuelos.Quotes){
+            this.getVuelosFiltrar(datos);
+            this.i++;
+          }
+        }else if ((precio >= 100) && (escala === true || escala === false)){
+          this.ArregloFiltros = [];
+          if (precio === 1000){
+            for ( const datos of this.TodoslosVuelos.Quotes){
+              if (escala === datos.Direct){
+                this.getArregloVuelosFiltros(datos);
+              }
+            }
+          }else{
+            for ( const datos of this.TodoslosVuelos.Quotes){
+              if (precio >= datos.MinPrice && escala === datos.Direct){
+                this.getArregloVuelosFiltros(datos);
+              }
+            }
+          }
+          this.TodoslosVuelos.Quotes = this.ArregloFiltros;
+        }else if ((precio >= 100) && (escala === null)){
+          this.ArregloFiltros = [];
+          if (precio === 1000){
+            for ( const datos of this.TodoslosVuelos.Quotes){
+              this.getArregloVuelosFiltros(datos);
+            }
+          }else{
+            for ( const datos of this.TodoslosVuelos.Quotes){
+              if (precio >= datos.MinPrice){
+                this.getArregloVuelosFiltros(datos);
+              }
+            }
+          }
+          this.TodoslosVuelos.Quotes = this.ArregloFiltros;
+        }else{
+          this.ArregloFiltros = [];
+          for ( const datos of this.TodoslosVuelos.Quotes){
+            if (escala === datos.Direct){
+              this.getArregloVuelosFiltros(datos);
+            }
+          }
+          this.TodoslosVuelos.Quotes = this.ArregloFiltros;
+        }
+      });
+     console.log(this.TodoslosVuelos.Quotes);
+     this.getTodosLosVuelosDespues(this.getCurrentDateMasDos(), origen, destino, precio, escala);
+    }
+
+    // tslint:disable-next-line: typedef
+    getArregloVuelosFiltros(Valor: Data){
+      this.getVuelosFiltrar(Valor);
+      this.ArregloFiltros[this.i] = Valor;
+      this.i++;
+    }
+    // tslint:disable-next-line: typedef
+    getVuelosFiltrar(Valor: Data){
+      this.cortarfecha = Valor.OutboundLeg.DepartureDate;
+      this.fecha[this.i] = this.cortarfecha.slice(0,  10);
+      this.precio[this.i] = Valor.MinPrice;
+      for (const airline of this.TodoslosVuelos.Carriers){
+              // tslint:disable-next-line: triple-equals
+              if (Valor.OutboundLeg.CarrierIds[0] == airline.CarrierId){
                 this.aereolinea[this.i] = airline.Name;
               }
             }
-            for(let nombre of this.TodoslosVuelos['Places']){
-              if(datos['OutboundLeg']['OriginId']== nombre.PlaceId){
+      for ( const nombre of this.TodoslosVuelos.Places){
+              // tslint:disable-next-line: triple-equals
+              if (Valor.OutboundLeg.OriginId == nombre.PlaceId){
                 this.nOrigen = nombre.IataCode;
                }
-               if(datos['OutboundLeg']['DestinationId']== nombre.PlaceId){
+              // tslint:disable-next-line: triple-equals
+              if (Valor.OutboundLeg.DestinationId == nombre.PlaceId){
                 this.nDestino = nombre.IataCode;
               }
-               this.ruta[this.i] = this.nOrigen + " a "+ this.nDestino;
+              this.ruta[this.i] = this.nOrigen + ' a ' + this.nDestino;
             }
-            this.i++;
-          }
-        }else{
-          this.ArregloFiltros = [];
-          for( let datos of this.TodoslosVuelos['Quotes']){
-            if(precio >= datos.MinPrice){
-              this.cortarfecha = datos['OutboundLeg'].DepartureDate;
-              this.fecha[this.i] = this.cortarfecha.slice(0,10);
-              this.precio[this.i] = datos.MinPrice;
-              for(let airline of this.TodoslosVuelos['Carriers']){
-                if(datos['OutboundLeg']['CarrierIds'][0]== airline.CarrierId){
-                  this.aereolinea[this.i] = airline.Name;
-                }
-              }
-              for(let nombre of this.TodoslosVuelos['Places']){
-                if(datos['OutboundLeg']['OriginId']== nombre.PlaceId){
-                  this.nOrigen = nombre.IataCode;
-                }
-                if(datos['OutboundLeg']['DestinationId']== nombre.PlaceId){
-                  this.nDestino = nombre.IataCode;
-                }
-                this.ruta[this.i] = this.nOrigen + " a "+ this.nDestino;
-              }
-              this.ArregloFiltros[this.i]= datos;
-              this.i++;
-            } 
-          }
-          this.TodoslosVuelos['Quotes'] = this.ArregloFiltros;
-          console.log(escala);
-        }
-
-
-        console.log(escala);
-  
-      });
-    // this.getTodosLosVuelosDespues(this.getCurrentDateMasDos(),origen,destino,precio); 
     }
-    getTodosLosVuelosDespues(fecha: any,origen: any, destino: any, precio:number){
-      this.VuelosServices.ObtenerTodosLosVuelos(fecha,origen,destino).subscribe((data: {}) => {
-         this.TodoslosVuelos1= data; 
+    // tslint:disable-next-line: typedef
+    // tslint:disable-next-line: typedef
+    getTodosLosVuelosDespues(fecha: any, origen: any, destino: any, precio: number, escala: any){
+      this.VuelosServices.ObtenerTodosLosVuelos(fecha, origen, destino).subscribe((data: {}) => {
+         this.TodoslosVuelos1 = data;
          this.i1 = 0;
-         if(precio<100){
-          for( let datos of this.TodoslosVuelos1['Quotes']){
-            this.cortarfecha = datos['OutboundLeg'].DepartureDate;
-            this.fecha1[this.i1] = this.cortarfecha.slice(0,10);
-             this.precio1[this.i1] = datos.MinPrice;
-             for(let airline of this.TodoslosVuelos1['Carriers']){
-               if(datos['OutboundLeg']['CarrierIds'][0]== airline.CarrierId){
-                 this.aereolinea1[this.i1] = airline.Name;
+         if ((precio < 100) && (escala === null)){
+          for ( const datos of this.TodoslosVuelos1.Quotes){
+            this.getVuelosFiltarDespues(datos);
+            this.i1++;
+           }
+         }else if ((precio >= 100) && (escala === true || escala === false)){
+          this.ArregloFiltros1 = [];
+          if (precio === 1000){
+            for ( const datos of this.TodoslosVuelos1.Quotes){
+              if (escala === datos.Direct){
+                this.getArregloVuelosFiltrosDespues(datos);
+              }
+             }
+          }else{
+            for ( const datos of this.TodoslosVuelos1.Quotes){
+              if (precio >= datos.MinPrice && escala === datos.Direct){
+                this.getArregloVuelosFiltrosDespues(datos);
                }
              }
-             for(let nombre of this.TodoslosVuelos1['Places']){
-               if(datos['OutboundLeg']['OriginId']== nombre.PlaceId){
-                 this.nOrigen1 = nombre.IataCode;
-                }
-                if(datos['OutboundLeg']['DestinationId']== nombre.PlaceId){
-                 this.nDestino1 = nombre.IataCode;
-                }
-                this.ruta1[this.i1] = this.nOrigen1 + " a "+ this.nDestino1;
+          }
+          this.TodoslosVuelos1.Quotes = this.ArregloFiltros1;
+         }else if ((precio >= 100) && (escala === null)){
+          this.ArregloFiltros1 = [];
+          if (precio === 1000){
+            for ( const datos of this.TodoslosVuelos1.Quotes){
+              this.getArregloVuelosFiltrosDespues(datos);
              }
-             this.i1++;
-           }
+          }else {
+            for ( const datos of this.TodoslosVuelos1.Quotes){
+              if (precio >= datos.MinPrice){
+                this.getArregloVuelosFiltrosDespues(datos);
+               }
+             }
+          }
+          this.TodoslosVuelos1.Quotes = this.ArregloFiltros1;
          }else{
           this.ArregloFiltros1 = [];
-          for( let datos of this.TodoslosVuelos1['Quotes']){
-            if(precio >= datos.MinPrice){
-              this.cortarfecha = datos['OutboundLeg'].DepartureDate;
-              this.fecha1[this.i1] = this.cortarfecha.slice(0,10);
-              this.precio1[this.i1] = datos.MinPrice;
-              for(let airline of this.TodoslosVuelos1['Carriers']){
-                if(datos['OutboundLeg']['CarrierIds'][0]== airline.CarrierId){
-                 this.aereolinea1[this.i1] = airline.Name;
-                }
-              }
-              for(let nombre of this.TodoslosVuelos1['Places']){
-                if(datos['OutboundLeg']['OriginId']== nombre.PlaceId){
-                 this.nOrigen1 = nombre.IataCode;
-                }
-                if(datos['OutboundLeg']['DestinationId']== nombre.PlaceId){
-                 this.nDestino1 = nombre.IataCode;
-               }
-                this.ruta1[this.i1] = this.nOrigen1 + " a "+ this.nDestino1;
-              }
-              this.ArregloFiltros1[this.i1]= datos;
-              this.i1++;
+          for ( const datos of this.TodoslosVuelos1.Quotes){
+            if (escala === datos.Direct){
+              this.getArregloVuelosFiltrosDespues(datos);
              }
            }
-           this.TodoslosVuelos1['Quotes'] = this.ArregloFiltros1;
-         }
+          this.TodoslosVuelos1.Quotes = this.ArregloFiltros1;
+        }
        });
      }
+     // tslint:disable-next-line: typedef
+     getArregloVuelosFiltrosDespues(Valor: Data){
+      this.getVuelosFiltarDespues(Valor);
+      this.ArregloFiltros1[this.i1] = Valor;
+      this.i1++;
+    }
 
+    // tslint:disable-next-line: typedef
+    getVuelosFiltarDespues(Valor: Data){
+      this.cortarfecha = Valor.OutboundLeg.DepartureDate;
+      this.fecha1[this.i1] = this.cortarfecha.slice(0, 10);
+      this.precio1[this.i1] = Valor.MinPrice;
+      for (const airline of this.TodoslosVuelos1.Carriers){
+               // tslint:disable-next-line: triple-equals
+               if (Valor.OutboundLeg.CarrierIds[0] == airline.CarrierId){
+                 this.aereolinea1[this.i1] = airline.Name;
+               }
+             }
+      for (const nombre of this.TodoslosVuelos1.Places){
+               // tslint:disable-next-line: triple-equals
+               if (Valor.OutboundLeg.OriginId == nombre.PlaceId){
+                 this.nOrigen1 = nombre.IataCode;
+                }
+               // tslint:disable-next-line: triple-equals
+               if (Valor.OutboundLeg.DestinationId == nombre.PlaceId){
+                 this.nDestino1 = nombre.IataCode;
+                }
+               this.ruta1[this.i1] = this.nOrigen1 + ' a ' + this.nDestino1;
+             }
+    }
       getCurrentDateMasDos(): string{
-        let day:any = this.fechaactual.getDate()+2;
-        let month:any = this.fechaactual.getMonth() + 1;
-        let year:any = this.fechaactual.getFullYear();
+        let day: any = this.fechaactual.getDate() + 2;
+        let month: any = this.fechaactual.getMonth() + 1;
+        const year: any = this.fechaactual.getFullYear();
         let fecha: string;
-        
-        if(day<10){
-        day = "0" + day.toString();
+
+        if (day < 10){
+        day = '0' + day.toString();
         }
-        if(month<10){
-        month = "0" + month.toString();
+        if (month < 10){
+        month = '0' + month.toString();
         }
-        fecha = year.toString() + "-" + month + "-" + day;
+        fecha = year.toString() + '-' + month + '-' + day;
         return fecha;
         }
         getCurrentDateMasUno(): string{
-          let day:any = this.fechaactual.getDate() +1;
-          let month:any = this.fechaactual.getMonth() + 1;
-          let year:any = this.fechaactual.getFullYear();
+          let day: any = this.fechaactual.getDate() + 1;
+          let month: any = this.fechaactual.getMonth() + 1;
+          const year: any = this.fechaactual.getFullYear();
           let fecha: string;
-          
-          if(day<10){
-          day = "0" + day.toString();
+
+          if (day < 10){
+          day = '0' + day.toString();
           }
-          if(month<10){
-          month = "0" + month.toString();
+          if (month < 10){
+          month = '0' + month.toString();
           }
-          fecha = year.toString() + "-" + month + "-" + day;
+          fecha = year.toString() + '-' + month + '-' + day;
           return fecha;
           }
-
+          // tslint:disable-next-line: typedef
           filtradodePrecio(precio: HTMLInputElement){
 
-            if(parseInt(precio.value)<=100){
-              this.MontoPrecio = "$"+precio.value;
-            }else{
-              this.MontoPrecio = "<$"+precio.value;
+            // tslint:disable-next-line: radix
+            if (parseInt(precio.value) <= 100){
+              this.MontoPrecio = '$' + precio.value;
+            // tslint:disable-next-line: radix
+            }else if (parseInt(precio.value) === 1000){
+              this.MontoPrecio = '+$' + precio.value;
+            }else {
+              this.MontoPrecio = '<$' + precio.value;
             }
-            this.getTodosLosVuelos(this.getCurrentDateMasUno(),"DO","US",parseInt(precio.value),null);
-          }
+            // tslint:disable-next-line: radix
+            this.MontoGlobal = parseInt(precio.value);
 
-          filtroEscala(escala:boolean){
-            //console.log(escala);
-            this.getTodosLosVuelos(this.getCurrentDateMasUno(),"DO","US",0,escala);
+
+            this.getTodosLosVuelos(this.getCurrentDateMasUno(), this.paisorigen, this.paisdestino,
+            this.MontoGlobal, this.EscalaGlobal);
           }
-        
+          // tslint:disable-next-line: typedef
+          filtroEscala(escala: number){
+            // console.log(escala);
+            if (escala === 0){
+              this.EscalaGlobal = false;
+            }else if (escala === 1){
+              this.EscalaGlobal = true;
+            }else{
+              this.EscalaGlobal = null;
+            }
+
+            this.getTodosLosVuelos(this.getCurrentDateMasUno(), this.paisorigen, this.paisdestino, this.MontoGlobal, this.EscalaGlobal);
+          }
 }
