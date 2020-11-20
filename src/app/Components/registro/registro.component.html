@@ -12,7 +12,7 @@
                             <h1 class="txt-blanco">¡Registrate!</h1>
                         </div>  
                     </div>
-                    <form (submit)="PostearCliente(nombre,apellido,cedula,pasaporte,email,nombreusuario,password)">
+                    <form (submit)="PostearCliente(nombre,apellido,cedula,pasaporte,email,nombreusuario,password,telefono)">
                         <div class="row">
                             <div class="col-lg-5">
                                 <input type="text" class="inputs-A form-control"  placeholder="Nombre" #nombre>
@@ -26,6 +26,9 @@
                         </div>
                         <div class="form-group">
                             <input type="text" class="inputs-A form-control" id=""  placeholder="Pasaporte" #pasaporte>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="inputs-A form-control" id="" placeholder="Telefono" #telefono>
                         </div>
                         <div class="form-group">
                             <input type="text" class="inputs-A form-control" id="" placeholder="Correo electronico" #email>

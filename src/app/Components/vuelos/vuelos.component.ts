@@ -66,8 +66,8 @@ export class VuelosComponent implements OnInit {
       public ArregloFiltros1: any = [];
       public Arreglo2Filtros: any = [];
       public Arreglo2Filtros1: any = [];
-          public MontoGlobal: any;
-          public EscalaGlobal: any;
+      public MontoGlobal: any;
+      public EscalaGlobal: any;
 
       public str:any = []; //pasar parametros al detalle
       public codigolugarOrigen:any;
@@ -76,6 +76,8 @@ export class VuelosComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    //$('#vuelos').addClass('active');
   }
   // tslint:disable-next-line: typedef
   getListadodePaises(){
@@ -379,7 +381,7 @@ export class VuelosComponent implements OnInit {
             let param: parametros = {ruta:string[0], fecha: string[1], aereolinea:string[2], 
             precio:string[3], nombreOrigen: origin, 
             nombreDestino: destination, codOrigen: this.str[0], codDestino:this.str[1],
-            fechaSalida: strfechasalida[1], fechaLlegada: strfechallegada[1], clasedevuelo:null};  
+            fechaLlegada: strfechasalida[0], fechaSalida: strfechallegada[0], horaLlegada: strfechallegada[1], horaSalida:strfechasalida[1], clasedevuelo:null};  
 
             this.VuelosServices.setStorageParametro(param);
             this.router.navigate(['/', 'detallesvuelo']);

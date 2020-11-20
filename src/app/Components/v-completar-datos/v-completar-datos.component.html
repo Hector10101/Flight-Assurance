@@ -21,7 +21,7 @@
                               <input type="text" class="inputs-A inputs-r form-control" id="" placeholder="Apellidos" #newapellido value="{{apellido}}">
                             </div>
                             <div class="form-group">
-                              <input type="text" class="inputs-A  inputs-r form-control" id="" placeholder="Cedula" #newcedula value="{{cedula}}">
+                              <input type="text" class="inputs-A  inputs-r form-control" id="" placeholder="Cedula" #newcedula value="{{cedula}}" maxlength="13" pattern="[0-9]{3}[-][0-9]{7}[-][0-9]{1}" title="Formato: 000-0000000-0">
                             </div>
                             <div class="form-group">
                               <input type="text" class="inputs-A inputs-r form-control" id="" placeholder="Pasaporte" #newpasaporte value="{{pasaporte}}">

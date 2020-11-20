@@ -14,13 +14,14 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  PostearCliente(nombre: HTMLInputElement,apellido: HTMLInputElement,cedula: HTMLInputElement,pasaporte: HTMLInputElement,email: HTMLInputElement,nombreusuario: HTMLInputElement,password: HTMLInputElement) {
+  PostearCliente(nombre: HTMLInputElement,apellido: HTMLInputElement,cedula: HTMLInputElement,pasaporte: HTMLInputElement,email: HTMLInputElement,nombreusuario: HTMLInputElement,password: HTMLInputElement, telefono: HTMLInputElement) {
     const cliente = {
       cedula: cedula.value,
       pasaporte: pasaporte.value,
       nombre: nombre.value,
       apellido: apellido.value,
       email: email.value,
+      telefono: telefono.value,
       direccion: "",
       genero: "",
       fecha_nacimiento: "",

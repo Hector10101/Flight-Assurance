@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
          // console.log("cliente encontrado");
          let userAutenticado : authuser = {id:cliente["id"], nombre:cliente["nombre"],segundonombre:"",apellido:cliente["apellido"],
          cedula:cliente["cedula"], pasaporte:cliente["pasaporte"], fechadenacimiento:cliente["fecha_nacimiento"], email:cliente["email"],
-         telefono:"", direccion:cliente["direccion"], nivelacceso: "cliente"};
+         telefono:cliente["telefono"], direccion:cliente["direccion"], nivelacceso: "cliente"};
          this.ApiService.UsuarioLogueado(userAutenticado);
          this.router.navigate(['/', '']);
         }
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           //console.log("administrador encontrado");
           let userAutenticado : authuser = {id:administrador["id"], nombre:administrador["nombre"],segundonombre:"",apellido:administrador["apellido"],
          cedula:administrador["cedula"], pasaporte:administrador["pasaporte"], fechadenacimiento:administrador["fecha_nacimiento"], email:administrador["email"],
-         telefono:"", direccion:administrador["direccion"], nivelacceso: "administrador"};
+         telefono: administrador["telefono"], direccion:administrador["direccion"], nivelacceso: "administrador"};
           this.ApiService.UsuarioLogueado(userAutenticado);
           this.router.navigate(['/', '']);
         }else{

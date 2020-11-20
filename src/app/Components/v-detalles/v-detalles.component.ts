@@ -33,15 +33,15 @@ export class VDetallesComponent implements OnInit {
   ngOnInit(): void {
    this.Bundle =  JSON.parse(localStorage.getItem("VueloElegido") || '{}');
     if(this.Bundle.nombreOrigen != null){
-      this.fecha = this.Bundle.fecha;
+      this.fecha = this.Bundle.fechaSalida;
       this.aereolinea = this.Bundle.aereolinea;
       this.precio = this.Bundle.precio;
       this.origen = this.Bundle.nombreOrigen;
       this.destino = this.Bundle.nombreDestino;
       this.codorigen = this.Bundle.codOrigen;
       this.coddestino = this.Bundle.codDestino;
-      this.fechasalida = this.Bundle.fechaSalida;
-      this.fechallegada = this.Bundle.fechaLlegada;
+      this.fechasalida = this.Bundle.horaSalida;
+      this.fechallegada = this.Bundle.horaLlegada;
     }else{
       this.router.navigate(['/', 'vuelos']);
     }

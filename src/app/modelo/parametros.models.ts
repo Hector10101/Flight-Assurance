@@ -9,5 +9,7 @@ export interface parametros{
     codDestino: string;
     fechaSalida: string;
     fechaLlegada: string;
+    horaSalida: string;
+    horaLlegada: string;
     clasedevuelo:any;
 } 

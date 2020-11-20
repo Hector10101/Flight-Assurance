@@ -54,6 +54,10 @@
     color: #F7F7F7 !important;
 }
 
+.pointer:hover{
+    cursor: pointer;
+}
+
 /* -------------------------- */
 /* Fin de Barra de Navegación */
 /* -------------------------- */

@@ -10,11 +10,11 @@
       
         <div class="collapse navbar-collapse text-right" id="navbarTogglerDemo03">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link links" href="/" [routerLink]="['']" >Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link links" href="/" [routerLink]="['../vuelos']">Vuelos</a>
+              <a class="nav-link links" href="/" id="vuelos" [routerLink]="['../vuelos']">Vuelos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link links" href="/" [routerLink]="['../nosotros']">Nosotros</a>
@@ -22,14 +22,14 @@
             <li class="nav-item">
                 <a class="nav-link links" href="/" [routerLink]="['../contactanos']">Contactanos</a>
             </li>
-            <a href="/"  [routerLink]="['../login']">
+            <a class="pointer" (click)="onclickLogueado();">
                 <li class="nav-item btn-IniciarSS">
                     <div class="Contenedor-InicioSS">
                         <div class="img-InicioSS">
                             <img src="../../../assets/img/user.png" width="30" height="30" class=" " alt="" loading="lazy">
                         </div>
                         <div class="txt-InicioSS">
-                            <span class="nav-link txtSS" href="#">Iniciar Sesión</span>
+                            <span class="nav-link txtSS" href="#">{{boton}}</span>
                         </div>
                     </div>
                 </li>

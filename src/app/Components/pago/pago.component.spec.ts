@@ -16,7 +16,7 @@ describe('PagoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PagoComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.detectChanges(); 
   });
 
   it('should create', () => {
