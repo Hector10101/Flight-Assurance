@@ -1,0 +1,90 @@
+body{
+    background-image: url('../../../assets/img/nosotrosAvion.png');
+}
+.D{
+     background-image: url('../../../assets/img/nosotrosAvion.png');
+}
+.conte-N{
+    min-height: 100vh;
+    background-color:#c4efec63;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avioIMG{
+    position: fixed;
+    z-index: 0;
+    min-height: 100vh;
+    
+}
+.img{
+    z-index: 0;
+}
+    
+
+.conte-N2{
+    min-height: 100vh;
+    background-color:#EDEBED;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    top: 0;
+    z-index: 55;
+    transition: 0.5s;
+}
+.contenedor{
+    align-items: center;
+    padding: 25px;
+    margin: 25px;
+}
+.Conte-left{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+.Conte-right{
+    display: flex;
+    align-items: center;
+
+    justify-content: flex-end;
+
+}
+.info1{
+    margin-top: 5%;
+}
+.info2{
+    margin-top: 5%;
+}
+.titulo{
+    font-size: 42px;
+}
+.sub-titulo{
+    font-size: 21px;
+}
+
+.text-rigth{
+    text-align: right;
+}
+
+.politicas{
+    background-color:   #292F36;
+    border-radius: 25px;
+}
+
+.politicas2{
+    padding: 45px;
+}
+
+.btnVermas{
+    background-color: #4ECDC4 !important;
+    color:  #292F36 !important;
+    border-radius: 20px !important;
+    padding: 3px 18px 3px 18px !important;
+    border: none !important;
+}
