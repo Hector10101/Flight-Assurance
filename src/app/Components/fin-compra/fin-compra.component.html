@@ -17,7 +17,7 @@
                         <div class="col-lg-3 txt-info mr-4">
                             <div class="row ">
                                 <div class="col-lg-12  ">
-                                    <h6><span class="txt-color-v">Tel: </span><span class="txt-blanco">829-826-0354</span></h6>
+                                    <h6><span class="txt-color-v">Tel: </span><span class="txt-blanco">849-406-8604</span></h6>
                                     <h6><span class="txt-color-v">Email: </span><span class="txt-blanco">FightAssurance@gmail.com</span></h6>
                                 </div>
                             </div>
@@ -38,13 +38,13 @@
                                 </thead>
                                 <tbody class="cuerpo">
                                     <tr>
-                                        <td class="txt-negro">200</td>
-                                        <td class="txt-negro">5</td>
-                                        <td class="txt-negro">26/11/2020</td>
-                                        <td class="txt-negro">26/11/2020</td>
-                                        <td class="txt-negro">6:00pm</td>
-                                        <td class="txt-negro">8:00pm</td>
-                                        <td class="txt-negro">$850</td>
+                                        <td class="txt-negro">{{codigovuelo}}</td>
+                                        <td class="txt-negro">{{numeroasiento}}</td>
+                                        <td class="txt-negro">{{fechasalida}}</td>
+                                        <td class="txt-negro">{{fechallegada}}</td>
+                                        <td class="txt-negro">{{horasalida}}</td>
+                                        <td class="txt-negro">{{horallegada}}</td>
+                                        <td class="txt-negro">{{precio}}</td>
                                     </tr>
 
                                 </tbody>
@@ -58,28 +58,28 @@
                     <div class="row barra2">
                         <div class="col-lg-3 mr-4 datos-cliente">
                             <h5 class="txt-negro ">Numero del viaje</h5>
-                            <h6 class="txt-blanco">200</h6>
+                            <h6 class="txt-blanco">{{codigovuelo}}</h6>
                             <h5 class="txt-negro ">Nombre del cliente</h5>
-                            <h6 class="txt-blanco">Franco Gorilla</h6>
+                            <h6 class="txt-blanco">{{nombrecliente}}</h6>
                             <h5 class="txt-negro ">Teléfono del cliente</h5>
-                            <h6 class="txt-blanco">200</h6>
+                            <h6 class="txt-blanco">{{telefono}}</h6>
                         </div>
                         <div class="col-lg-8 ">
                             <div class="row">
                                 <div class="col-lg-8 tiket">
                                     <div class="row datos1">
                                         <div class="col-lg-5">
-                                            <h5>SDQ</h5>
-                                            <h6>Santo Domingo, SDQ</h6>
-                                            <h6>26/11/2020 6:00PM</h6>
+                                            <h5>{{codigoorigen}}</h5>
+                                            <h6>{{nombreorigen}}, {{codigoorigen}}</h6>
+                                            <h6>{{fechasalida}} {{horasalida}}</h6>
                                         </div>
                                         <div class="col-lg-2">
                                             <img src="../../../assets/img/plane.png" width="35" height="35" class="  align-top">
                                         </div>
                                         <div class="col-lg-5">
-                                            <h5>CUN</h5>
-                                            <h6>Cancún, CUN</h6>
-                                            <h6>26/11/2020 8:00PM</h6>
+                                            <h5>{{codigodestino}}</h5>
+                                            <h6>{{nombredestino}}, {{codigodestino}}</h6>
+                                            <h6>{{fechallegada}} {{horallegada}}</h6>
                                         </div>
                                         <div class="col-lg-12 datos2">
                                             <table class="table">
@@ -93,10 +93,10 @@
                                                 </thead>
                                                 <tbody class="">
                                                     <tr>
-                                                        <td class="txt-negro">Franco gorila</td>
-                                                        <td class="txt-negro">200</td>
-                                                        <td class="txt-negro">3</td>
-                                                        <td class="txt-negro">A</td>
+                                                        <td class="txt-negro">{{nombrecliente}} {{apellidocliente}}</td>
+                                                        <td class="txt-negro">{{codigovuelo}}</td>
+                                                        <td class="txt-negro">{{numeroasiento}}</td>
+                                                        <td class="txt-negro">{{terminal}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

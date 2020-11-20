@@ -50,27 +50,24 @@ export class NavegacionComponent implements OnInit {
     this.Bundle = JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
 
     this.nombre = localStorage.getItem("nombreUsuario");
-    if(this.Bundle.nombre != null){
       if(this.Bundle.nombre != null && this.Bundle.nombre ==this.nombre){
         this.boton = this.Bundle.nombre + ', ' + "Cerrar Sesion";
         this.usuarioLogueado = true;
-      }else{
+      }else if(this.Bundle.nombre == null || this.Bundle.nombre != this.nombre){
         this.usuarioLogueado = false;
         this.boton = "Iniciar Sesion";
       }
-    }else{
-      this.usuarioLogueado = false;
-      this.boton = "Iniciar Sesion";
-    }
+    
   }
 
 
 
   onclickLogueado(){
     if(this.usuarioLogueado){
-      //limpiarstorage confirmar cerrar sesion
       localStorage.removeItem("usuario_logueado");
-      this.router.navigate(['/', '']);
+      localStorage.removeItem("nombreUsuario");
+      this.usuarioLogueado = false;
+      this.router.navigate(['/', 'login']);
     }else{
       this.router.navigate(['/', 'login']);
     }

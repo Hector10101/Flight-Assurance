@@ -20,17 +20,17 @@
         <div class="row Conte-C">
             <div class="col-lg-2 vuelos-Interes">
                 <h4 class="txt-blanco">Vuelos de interés</h4>
-                <div class="vueloInte">
+                <div class="vueloInte" *ngFor="let vuelos of TodoslosVuelos['Quotes']; let indice=index">
                     <div class="O-D">
                         <img src="../../../assets/img/plane.png" width="45" height="45" class="img-V-I  align-top">
-                        <span class="txt-blanco txt-V-I">DO to PR</span>
+                        <span class="txt-blanco txt-V-I">{{ruta[indice]}}</span>
                     </div>
                     <div class="info-V-interes">
-                        <h5 class="txt-blanco fecha-V-interes">DD/MM/YYYY</h5>
-                        <h6 class="txt-blanco aerolinea-V-interes">American Airline</h6>
+                        <h5 class="txt-blanco fecha-V-interes">{{fecha[indice]}}</h5>
+                        <h6 class="txt-blanco aerolinea-V-interes">{{aereolinea[indice]}}</h6>
                     </div>
                     <div class="precio-V-interes">
-                        <h5 class="txt-blanco txt-precio">$000.00</h5>
+                        <h5 class="txt-blanco txt-precio">${{precio[indice]}}</h5>
                     </div>
                     <div class="btn-V-interes">
                         <button class="btn btn-vermas-V-interes" [routerLink]="['../vuelos']">Ver Más</button>
@@ -109,17 +109,17 @@
             <div class="col-lg-1">
                 <div class="all-redes">
                     <div class="Redes R-instagram">
-                        <a href="#">
+                        <a href="https://www.instagram.com/_flightAssurance/" target="_blank">
                             <img src="../../../assets/img/instagram.png" style="width: 3rem;"  class="card-img">
                         </a>
-                    </div>
+                    </div> 
                     <div class="Redes R-facebook">
-                        <a href="#">
+                        <a href="https://www.facebook.com/flight.assurance/" target="_blank">
                             <img src="../../../assets/img/facebook.png" style="width: 3rem;" class="card-img">
                         </a>
                     </div>
                     <div class="Redes R-reddit">
-                        <a href="#">
+                        <a href="https://www.reddit.com/user/flightassurance" target="_blank">
                             <img src="../../../assets/img/reddit.png" style="width: 3rem;" class="card-img">
                         </a>
                     </div>

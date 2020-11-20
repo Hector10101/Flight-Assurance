@@ -84,7 +84,7 @@ export class VuelosComponent implements OnInit {
     this.VuelosServices.ObtenerNombredePaises().subscribe((data: {}) => {
         this.listado = data;
         // console.log(this.listado);
-      });
+      }); 
     }
     // tslint:disable-next-line: typedef
     getPaisesSeleccionado(){
