@@ -47,6 +47,8 @@ export class LoginComponent implements OnInit {
          cedula:cliente["cedula"], pasaporte:cliente["pasaporte"], fechadenacimiento:cliente["fecha_nacimiento"], email:cliente["email"],
          telefono:cliente["telefono"], direccion:cliente["direccion"], nivelacceso: "cliente"};
          this.ApiService.UsuarioLogueado(userAutenticado);
+          localStorage.setItem("nombreUsuario", cliente["nombre"]);
+
          this.router.navigate(['/', '']);
         }
       }
@@ -57,6 +59,7 @@ export class LoginComponent implements OnInit {
          cedula:administrador["cedula"], pasaporte:administrador["pasaporte"], fechadenacimiento:administrador["fecha_nacimiento"], email:administrador["email"],
          telefono: administrador["telefono"], direccion:administrador["direccion"], nivelacceso: "administrador"};
           this.ApiService.UsuarioLogueado(userAutenticado);
+          localStorage.setItem("nombreUsuario", administrador["nombre"]);
           this.router.navigate(['/', '']);
         }else{
           console.log("no hay encontrado");

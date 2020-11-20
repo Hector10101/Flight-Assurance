@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RouterModule, Routes, Router, Data } from '@angular/router';
+import {AutenticacionService} from 'src/app/servicios/autenticacion.service';
 
 @Component({
   selector: 'app-navegacion',
@@ -10,13 +11,14 @@ export class NavegacionComponent implements OnInit {
 
   public ruta: any;
   public Bundle: any = [];
+  public nombre: any;
   public boton: any;
   public usuarioLogueado: any;
   
   public inicio: string =""; vuelos: string =""; 
   nosotros: string =""; contactanos: string ="";
 
-  constructor(private router: Router) { 
+  constructor(private authService: AutenticacionService,private router: Router) { 
     this.ruta = router.url;
     console.log(router.url);
     
@@ -46,14 +48,23 @@ export class NavegacionComponent implements OnInit {
       this.vuelos = "active";
     }
     this.Bundle = JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+
+    this.nombre = localStorage.getItem("nombreUsuario");
     if(this.Bundle.nombre != null){
+      if(this.Bundle.nombre != null && this.Bundle.nombre ==this.nombre){
         this.boton = this.Bundle.nombre + ', ' + "Cerrar Sesion";
         this.usuarioLogueado = true;
+      }else{
+        this.usuarioLogueado = false;
+        this.boton = "Iniciar Sesion";
+      }
     }else{
       this.usuarioLogueado = false;
       this.boton = "Iniciar Sesion";
     }
   }
+
+
 
   onclickLogueado(){
     if(this.usuarioLogueado){
