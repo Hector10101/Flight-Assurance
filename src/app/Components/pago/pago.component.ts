@@ -40,7 +40,7 @@ export class PagoComponent implements OnInit {
 
       if(nombretarjeta.value != '' || notarjeta.value != '' || fechavencimiento.value != '' ||  CCV.value != '' || montoapagar.value != ''){
        
-        if(parseFloat(montoapagar.value) >= this.montorealmitad && parseFloat(montoreal) > parseFloat(montoapagar.value) ){
+        if(parseFloat(montoapagar.value) >= this.montorealmitad && parseFloat(montoreal[1]) > parseFloat(montoapagar.value) ){
           this.router.navigate(['/', 'finalizarCompra']);
         }else{
           console.log("mensaje EL MINIMO PARA PAGAR ES montorealmitad;");
