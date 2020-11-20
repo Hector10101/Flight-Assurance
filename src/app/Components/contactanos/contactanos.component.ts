@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RequiredValidator } from '@angular/forms';
+import { MensajeService } from 'src/app/servicios/mensaje.service';
 
 @Component({
   selector: 'app-contactanos',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactanosComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _MessageService: MensajeService) { }
 
   ngOnInit(): void {
-  }
+
+    const form = {
+      nombre: "Erick",
+      email: "erickkpsanchez@gmail.com",
+      mensaje: "hora soy naruto"
+    };
+
+    this._MessageService.sendMessage(form).subscribe(() => {
+      });
+   
+  } 
+
+ 
 
 }

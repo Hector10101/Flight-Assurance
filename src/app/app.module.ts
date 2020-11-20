@@ -20,7 +20,7 @@ import { PagoComponent } from './Components/pago/pago.component';
 import { FinCompraComponent } from './Components/fin-compra/fin-compra.component';
 import { VDetallesComponent } from './Components/v-detalles/v-detalles.component';
 import { from } from 'rxjs';
-
+import { MensajeService } from './servicios/mensaje.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { from } from 'rxjs';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [MensajeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
