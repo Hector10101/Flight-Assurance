@@ -14,19 +14,19 @@
                     </div> 
                     <form  method="post" enctype="text/plain">
                         <div class="form-group">
-                          <input type="text" class="inputs-A form-control" id="" placeholder="Nombre">
+                          <input type="text" class="inputs-A form-control" id=""  placeholder="Nombre" #nombre>
                         </div>
                         <div class="form-group">
-                          <input type="password" class="inputs-A form-control" id="" placeholder="Correo electronico">
+                          <input type="email" class="inputs-A form-control" id="" placeholder="Correo electronico" #correo >
                         </div>
                         <div class="form-group">
-                            <input type="password" class="inputs-A form-control" id="" placeholder="Asunto">
+                            <input type="text" class="inputs-A form-control" id=""  placeholder="Asunto" #asunto>
                         </div>
                         <div class="form-group">
-                            <textarea class="inputs-A form-control" maxlength="300" rows="6" id="" placeholder="Mensaje"></textarea>
+                            <textarea class="inputs-A form-control" maxlength="300" rows="6"  id="" placeholder="Mensaje" #mensaje></textarea>
                         </div>
                         <div class="conten-btn">
-                            <button type="submit" class="btn btn-contact"><span class="txt-contact">Enviar</span></button>
+                            <button type="submit" class="btn btn-contact"><span class="txt-contact" (click)="onClickEnviar(nombre,correo,asunto,mensaje)">Enviar</span></button>
                         </div>
                     </form>                  
                 </div>

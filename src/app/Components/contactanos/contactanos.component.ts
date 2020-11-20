@@ -9,20 +9,24 @@ import { MensajeService } from 'src/app/servicios/mensaje.service';
 })
 export class ContactanosComponent implements OnInit {
 
+
   constructor(public _MessageService: MensajeService) { }
 
   ngOnInit(): void {
+  } 
 
+  onClickEnviar(nombre: HTMLInputElement,correo: HTMLInputElement,asunto: HTMLInputElement,mensaje: HTMLTextAreaElement){
     const form = {
-      nombre: "Erick",
-      email: "erickkpsanchez@gmail.com",
-      mensaje: "hora soy naruto"
+      nombre: nombre.value,
+      email: correo.value,
+      mensaje: mensaje.value,
+      asunto: asunto.value
     };
 
     this._MessageService.sendMessage(form).subscribe(() => {
       });
    
-  } 
+  }
 
  
 
