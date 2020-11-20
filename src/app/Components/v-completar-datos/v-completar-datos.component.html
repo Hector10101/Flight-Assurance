@@ -11,55 +11,56 @@
                         <div class="col-lg-6">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" class="inputs-A inputs-r form-control" placeholder="Nombre">
+                                    <input type="text" class="inputs-A inputs-r form-control" #newprimernombre value="{{primernombre}}" placeholder="Primer Nombre" required>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" class="inputs-A inputs-r form-control" placeholder="Nombre 2">
+                                    <input type="text" class="inputs-A inputs-r form-control" #newsegundonombre value="{{segundonombre}}" placeholder="Segundo Nombre">
                                 </div>
                             </div>
                             <div class="form-group">
-                              <input type="text" class="inputs-A inputs-r form-control" id="" placeholder="Apellidos">
+                              <input type="text" class="inputs-A inputs-r form-control" id="" placeholder="Apellidos" #newapellido value="{{apellido}}">
                             </div>
                             <div class="form-group">
-                              <input type="text" class="inputs-A  inputs-r form-control" id="" placeholder="Correo electronico">
+                              <input type="text" class="inputs-A  inputs-r form-control" id="" placeholder="Cedula" #newcedula value="{{cedula}}">
                             </div>
                             <div class="form-group">
-                              <input type="text" class="inputs-A inputs-r form-control" id="" placeholder="Pasaporte">
+                              <input type="text" class="inputs-A inputs-r form-control" id="" placeholder="Pasaporte" #newpasaporte value="{{pasaporte}}">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <input type="date" class="inputs-A inputs-r form-control" id="" placeholder="DD/MM/AAAA">
+                                <input type="date" class="inputs-A inputs-r form-control" id="" placeholder="DD/MM/AAAA" #newfechanac value="{{fechadenacimiento}}">
                             </div>
                             <div class="form-group">
-                              <input type="text" class="inputs-A inputs-r form-control" id="" placeholder="Correo electrónico">
+                              <input type="text" class="inputs-A inputs-r form-control" id="" placeholder="Correo electrónico" #newemail value="{{email}}">
                             </div>
                             <div class="form-group">
-                              <input type="tel" class="inputs-A  inputs-r form-control" id="" placeholder="Teléfono">
+                              <input type="tel" class="inputs-A  inputs-r form-control" id="" placeholder="Teléfono" #newtelefono value="{{telefono}}">
                             </div>
                             <div class="form-group">
-                              <input type="text" class="inputs-A inputs-r form-control" id="" placeholder="Dirección">
+                              <input type="text" class="inputs-A inputs-r form-control" id="" placeholder="Dirección" #newdireccion value="{{direccion}}">
                             </div>
                         </div>
                     </form>
                     <div class="g-radio-btn"> 
                         <span class="txt-negro txt-genero">Genero</span>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadioF" name="customRadio" class="custom-control-input  ">
+                            <input type="radio" id="customRadioF" name="customRadio" class="custom-control-input" value="F">
                             <label class="custom-control-label txt-radio" for="customRadioF">Mujer (F)</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadioM" name="customRadio" class="custom-control-input">
+                            <input type="radio" id="customRadioM" name="customRadio" class="custom-control-input" value="M">
                             <label class="custom-control-label txt-radio" for="customRadioM">Hombre (M)</label>
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadioX" name="customRadio" class="custom-control-input">
+                            <input type="radio" id="customRadioX" name="customRadio" class="custom-control-input" value="X">
                             <label class="custom-control-label txt-radio" for="customRadioX">No especificado (X)</label>
                         </div>
                     </div>
                     <div class="conten-btn">
-                        <button type="submit" class="btn btn-continuar"><span class="txt-continuar">Continuar</span></button>
+                        <button type="submit" class="btn btn-continuar" (click)="onClickCompletarDatos(newprimernombre,newsegundonombre,newapellido,
+                        newcedula,newpasaporte,newfechanac,newemail,newtelefono, newdireccion);"><span class="txt-continuar">Continuar</span></button>
                     </div>
                 </div>
             </div>

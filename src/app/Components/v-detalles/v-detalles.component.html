@@ -5,16 +5,17 @@
             <div class="col-lg-8">
                 <div class="conten-datos">
                     <h1 class="txt-negro">Detalles del vuelo</h1>
-                    <h6><span class="txt-info">Origen: </span><span id="origen">Santo Domingo (SDQ)</span></h6>
-                    <h6><span class="txt-info">Destino: </span><span id="destino">Cancun (CUN)</span></h6>
-                    <h6><span class="txt-info">Fecha de vuelo: </span><span id="fecha-vuelo">26/11/2020</span></h6>
+                    <h6><span class="txt-info">Origen: </span><span id="origen">{{origen}} ({{codorigen}})</span></h6>
+                    <h6><span class="txt-info">Destino: </span><span id="destino">{{destino}} ({{coddestino}})</span></h6>
+                    <h6><span class="txt-info">Fecha de vuelo: </span><span id="fecha-vuelo">{{fecha}}</span></h6>
+                    <h6><span class="txt-info">Aereolinea: </span><span id="Aereolinea">{{aereolinea}}</span></h6>
                     <h6><span class="txt-info">Terminal: </span><span id="terminal">A</span></h6>
-                    <h6><span class="txt-info">Hora salida: </span><span id="hora-salida">6:00pm</span></h6>
-                    <h6><span class="txt-info">Hora llegada: </span><span id="hora-llegada">8:00pm</span></h6>
+                    <h6><span class="txt-info">Hora salida: </span><span id="hora-salida">{{fechasalida}}</span></h6>
+                    <h6><span class="txt-info">Hora llegada: </span><span id="hora-llegada">{{fechallegada}}</span></h6>
 
-                    <div class="txt-btn-PaRe">
-                        <h6><span class="txt-info">Costo del vuelo: </span><span id="precio">$850</span></h6>
-                        <button type="submit" class="mt-2 btn btn-PaRe"><span class="txt-PaRe">Pagar/Reservar</span></button>
+                    <div class="txt-btn-PaRe"> 
+                        <h6><span class="txt-info">Costo del vuelo: </span><span id="precio">{{precio}}</span></h6>
+                        <button type="submit" class="mt-2 btn btn-PaRe" ><span class="txt-PaRe" (click)="onclickCompletarDatos();">Pagar/Reservar</span></button>
                     </div>
                 </div>
             </div>

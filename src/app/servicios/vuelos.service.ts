@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient, HttpHeaders  } from '@angular/common/http/';
+import { HttpClientModule, HttpClient, HttpHeaders} from '@angular/common/http/';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { listadopaises } from '../modelo/listadopaises';
 import { listadoaereopuertos } from '../modelo/listadoaereopuertos';
+import { parametros } from '../modelo/parametros.models';
 
 
 @Injectable({
@@ -39,10 +40,18 @@ export class VuelosService {
   }
 
   ObtenerTodosLosVuelos(fecha: any, origen: any, destino: any): Observable<listadoaereopuertos> {
-    const ApiAereopuertos = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/US/USD/en-US/${origen}-sky/${destino}-sky/${fecha}`;
+    const ApiAereopuertos = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/US/USD/es-ES/${origen}-sky/${destino}-sky/${fecha}`;
     return this.http.get<listadoaereopuertos>(`${ApiAereopuertos}`, this.httpOptions)
     .pipe(
       retry(1),
     );
   }
+
+
+  //Parametros Detalle Vuelo
+
+  setStorageParametro(Params: parametros) {
+    localStorage.setItem('VueloElegido', JSON.stringify(Params));
+  }
+
 }

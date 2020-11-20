@@ -26,11 +26,6 @@ export class AutenticacionService {
     localStorage.setItem('usuario_logueado', JSON.stringify(usuario));
   }
 
-  // tslint:disable-next-line: typedef
-  ObtenerUsuarioLogueado() {
-    const e = JSON.parse(localStorage.getItem('user') || '{}'); return e;
-  }
-
   ObtenerClientes(): Observable<clientes> {
     return this.http.get<clientes>(`${this.headers}${this.api}/cliente`, this.httpOptions)
     .pipe(

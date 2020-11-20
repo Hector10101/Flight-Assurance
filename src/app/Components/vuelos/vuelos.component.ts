@@ -3,6 +3,7 @@ import {RouterModule, Routes, Router, Data } from '@angular/router';
 import {VuelosService} from 'src/app/servicios/vuelos.service';
 import { listadopaises } from 'src/app/modelo/listadopaises';
 import { delay, retry, retryWhen } from 'rxjs/operators';
+import { parametros } from 'src/app/modelo/parametros.models';
 
 @Component({
   selector: 'app-vuelos',
@@ -24,6 +25,9 @@ export class VuelosComponent implements OnInit {
   public listado: any = [];
   public paisorigen: any;
   public paisdestino: any;
+  public Parametros: any;
+  public Parametros1: any;
+
 
 
   public Nombrepaisorigen: any;
@@ -64,6 +68,11 @@ export class VuelosComponent implements OnInit {
       public Arreglo2Filtros1: any = [];
           public MontoGlobal: any;
           public EscalaGlobal: any;
+
+      public str:any = []; //pasar parametros al detalle
+      public codigolugarOrigen:any;
+      public codigolugarDestino:any;
+      public strfecha:any = [];
 
 
   ngOnInit(): void {
@@ -328,5 +337,51 @@ export class VuelosComponent implements OnInit {
             }
 
             this.getTodosLosVuelos(this.getCurrentDateMasUno(), this.paisorigen, this.paisdestino, this.MontoGlobal, this.EscalaGlobal);
+          }
+          onclickbtnInfo(params2: HTMLInputElement){
+            //console.log(params2.value);
+            var string = params2.value.split("/");
+            var origin="", destination="";
+            //console.log(string);
+            this.str = string[0].split(" a ");
+
+            console.log(this.str);
+
+            for(let nombrepais of this.TodoslosVuelos['Places']){
+              if(nombrepais.SkyscannerCode == this.str[0]){
+                //Origen
+                origin = nombrepais.CountryName;
+                this.codigolugarOrigen = nombrepais.PlaceId;
+              }
+              if(nombrepais.SkyscannerCode == this.str[1]){
+                //destino
+                destination = nombrepais.CountryName;
+                this.codigolugarDestino = nombrepais.PlaceId;
+              }
+             // console.log(nombrepais);
+            }
+
+            var fechamayor, fechamenor;
+
+            for(let fechas of this.TodoslosVuelos['Quotes']){
+              if((fechas['OutboundLeg'].OriginId == this.codigolugarOrigen) &&
+                (fechas['OutboundLeg'].DestinationId == this.codigolugarDestino)){
+                  fechamayor = fechas.QuoteDateTime;
+                  fechamenor = fechas['OutboundLeg'].DepartureDate;
+              }
+            }
+
+            console.log(fechamayor +" > " + fechamenor);
+
+            var strfechallegada = fechamayor.split("T");
+            var strfechasalida = fechamenor.split("T");
+
+            let param: parametros = {ruta:string[0], fecha: string[1], aereolinea:string[2], 
+            precio:string[3], nombreOrigen: origin, 
+            nombreDestino: destination, codOrigen: this.str[0], codDestino:this.str[1],
+            fechaSalida: strfechasalida[1], fechaLlegada: strfechallegada[1], clasedevuelo:null};  
+
+            this.VuelosServices.setStorageParametro(param);
+            this.router.navigate(['/', 'detallesvuelo']);
           }
 }

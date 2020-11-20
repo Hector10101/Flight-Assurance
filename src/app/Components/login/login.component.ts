@@ -43,7 +43,9 @@ export class LoginComponent implements OnInit {
      for(let cliente of this.Cliente){
         if((usuario.value == cliente["usuario"]) && (password.value == cliente["password"])){
          // console.log("cliente encontrado");
-         let userAutenticado : authuser = {id:cliente["id"], nombre:cliente["nombre"], nivelacceso: "cliente"};
+         let userAutenticado : authuser = {id:cliente["id"], nombre:cliente["nombre"],segundonombre:"",apellido:cliente["apellido"],
+         cedula:cliente["cedula"], pasaporte:cliente["pasaporte"], fechadenacimiento:cliente["fecha_nacimiento"], email:cliente["email"],
+         telefono:"", direccion:cliente["direccion"], nivelacceso: "cliente"};
          this.ApiService.UsuarioLogueado(userAutenticado);
          this.router.navigate(['/', '']);
         }
@@ -51,7 +53,9 @@ export class LoginComponent implements OnInit {
       for(let administrador of this.Administrador){
         if((usuario.value == administrador["usuario"]) && (password.value == administrador["password"])){
           //console.log("administrador encontrado");
-          let userAutenticado : authuser = {id:administrador["id"], nombre:administrador["nombre"], nivelacceso: "administrador"};
+          let userAutenticado : authuser = {id:administrador["id"], nombre:administrador["nombre"],segundonombre:"",apellido:administrador["apellido"],
+         cedula:administrador["cedula"], pasaporte:administrador["pasaporte"], fechadenacimiento:administrador["fecha_nacimiento"], email:administrador["email"],
+         telefono:"", direccion:administrador["direccion"], nivelacceso: "administrador"};
           this.ApiService.UsuarioLogueado(userAutenticado);
           this.router.navigate(['/', '']);
         }else{

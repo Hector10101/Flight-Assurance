@@ -79,9 +79,11 @@
                             <div class="precio-vuelo">
                                 <h5 class="txt-negro txt-precio">${{precio[indice]}}</h5>
                             </div>
+                            <input  type="text" class="form-control" #Parametros hidden  value="{{ruta[indice]}}/{{fecha[indice]}}/{{aereolinea[indice]}}/${{precio[indice]}}">
                             <div class="btn-vuelo">
-                                <button class="btn btn-vermas-Vuelo" [routerLink]="['../detallesvuelo']"><span class="txt-mas">Ver Más</span></button>
+                                <button class="btn btn-vermas-Vuelo" (click)="onclickbtnInfo(Parametros)"><span class="txt-mas">Ver Más</span></button>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6" *ngFor="let vuelos of TodoslosVuelos1['Quotes']; let indice=index">
@@ -97,8 +99,9 @@
                             <div class="precio-vuelo">
                                 <h5 class="txt-negro txt-precio">${{precio1[indice]}}</h5>
                             </div>
+                            <input  type="text" class="form-control" hidden  #Parametros1 value="{{ruta1[indice]}}/{{fecha1[indice]}}/{{aereolinea1[indice]}}/${{precio1[indice]}}">
                             <div class="btn-vuelo">
-                                <button class="btn btn-vermas-Vuelo" [routerLink]="['../detallesvuelo']"><span class="txt-mas">Ver Más</span></button>
+                                <button class="btn btn-vermas-Vuelo" (click)="onclickbtnInfo(Parametros1)"><span class="txt-mas">Ver Más</span></button>
                             </div>
                         </div>
                     </div>
