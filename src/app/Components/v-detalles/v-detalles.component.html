@@ -12,9 +12,9 @@
                     <h6><span class="txt-info">Destino: </span><span id="destino">{{destino}} ({{coddestino}})</span></h6>
                     <h6><span class="txt-info">Fecha de vuelo: </span><span id="fecha-vuelo">{{fecha}}</span></h6>
                     <h6><span class="txt-info">Aereolinea: </span><span id="Aereolinea">{{aereolinea}}</span></h6>
-                    <h6><span class="txt-info">Terminal: </span><span id="terminal">A</span></h6>
-                    <h6><span class="txt-info">Hora salida: </span><span id="hora-salida">{{fechasalida}}</span></h6>
-                    <h6><span class="txt-info">Hora llegada: </span><span id="hora-llegada">{{fechallegada}}</span></h6>
+                    <h6><span class="txt-info">Terminal: </span><span id="terminal">{{terminal}}</span></h6>
+                    <h6><span class="txt-info">Hora salida: </span><span id="hora-salida">{{horasalida}}</span></h6>
+                    <h6><span class="txt-info">Hora llegada: </span><span id="hora-llegada">{{horallegada}}</span></h6>
 
                     <div class="txt-btn-PaRe"> 
                         <h6><span class="txt-info">Costo del vuelo: </span><span id="precio">{{precio}}</span></h6>
@@ -28,15 +28,15 @@
                         <span class="txt-negro txt-clase">Clase del vuelo</span>
                         <div class="custom-control custom-radio mt-3 mb-1">
                             <input type="radio" id="customRadioEco" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label txt-radio" for="customRadioEco">Economica</label>
+                            <label class="custom-control-label txt-radio" for="customRadioEco" (click)="filtroClase(0)">Economica</label>
                         </div>
                         <div class="custom-control custom-radio mb-1">
                             <input type="radio" id="customRadioEje" name="customRadio" class="custom-control-input  ">
-                            <label class="custom-control-label txt-radio" for="customRadioEje">Ejecutiva</label>
+                            <label class="custom-control-label txt-radio" for="customRadioEje" (click)="filtroClase(1)">Ejecutiva</label>
                         </div>
                         <div class="custom-control custom-radio mb-1 ">
                             <input type="radio" id="customRadioP" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label txt-radio" for="customRadioP">Primera</label>
+                            <label class="custom-control-label txt-radio" for="customRadioP" (click)="filtroClase(2)">Primera</label>
                         </div>
                     </div>  
                 </div>

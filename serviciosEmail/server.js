@@ -10,6 +10,7 @@ app.post('/formulario', (req, res) => {
  configMensaje(req.body);
  res.status(200).send();
 })
+app.set('port',process.env.PORT || '4200')
 app.listen(3000, () => {
  console.log('Servidor corriendo')
 });

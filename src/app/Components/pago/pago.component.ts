@@ -45,6 +45,21 @@ export class PagoComponent implements OnInit {
        fechavencimiento.value != '' ||  CCV.value != '' || montoapagar.value != ''){
 
         if (parseFloat(montoapagar.value) >= this.montorealmitad && parseFloat(montoreal[1]) > parseFloat(montoapagar.value) ){
+          
+          if(parseFloat(montoapagar.value) < parseFloat(montoreal[1])){
+            const Reserva = {
+              precio: montoapagar.value,
+              tipo: "Reserva"
+            }
+            localStorage.setItem("pago", JSON.stringify(Reserva));
+          }else{
+            const pago = {
+              precio: montoapagar.value,
+              tipo: "Compra"
+            }
+            localStorage.setItem("pago", JSON.stringify(pago));
+          }
+          
           this.router.navigate(['/', 'finalizarCompra']);
         }else{
           console.log('mensaje EL MINIMO PARA PAGAR ES montorealmitad;');

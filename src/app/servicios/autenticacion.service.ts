@@ -5,6 +5,8 @@ import { retry, catchError } from 'rxjs/operators';
 import { authuser } from '../modelo/authuser.models';
 import { administrador } from '../modelo/administrador';
 import { clientes } from '../modelo/clientes';
+import { asiento } from '../modelo/asiento';
+import { factura } from '../modelo/factura';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +44,27 @@ export class AutenticacionService {
 
   ObtenerAdministrador(): Observable<administrador> {
     return this.http.get<administrador>(`${this.headers}${this.api}/administrador`)
+    .pipe(
+      retry(1),
+    );
+  }
+
+  ObtenerAsientos(): Observable<asiento> {
+    return this.http.get<asiento>(`${this.headers}${this.api}/asiento`, this.httpOptions)
+    .pipe(
+      retry(1),
+    );
+  }
+  ObtenerFactura(): Observable<factura> {
+    return this.http.get<factura>(`${this.headers}${this.api}/factura`, this.httpOptions)
+    .pipe(
+      retry(1),
+    );
+  }
+
+
+  PostearFactura(factura: any = []): Observable<factura> {
+    return this.http.post<factura>(`${this.headers}${this.api}/factura`, JSON.stringify(factura), this.httpOptions)
     .pipe(
       retry(1),
     );

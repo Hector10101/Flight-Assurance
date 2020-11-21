@@ -79,7 +79,7 @@ export class NavegacionComponent implements OnInit {
           swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Sesion cerrada' + '\n' + '¡Nosvemos pronto!',
+            title: 'Sesion cerrada' + '\n' + '¡Nos vemos pronto!',
             showConfirmButton: false,
             timer: 1500
           });
