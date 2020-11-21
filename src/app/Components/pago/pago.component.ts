@@ -44,7 +44,7 @@ export class PagoComponent implements OnInit {
        // tslint:disable-next-line: triple-equals
        fechavencimiento.value != '' ||  CCV.value != '' || montoapagar.value != ''){
 
-        if (parseFloat(montoapagar.value) >= this.montorealmitad && parseFloat(montoreal[1]) > parseFloat(montoapagar.value) ){
+        if (parseFloat(montoapagar.value) >= this.montorealmitad && parseFloat(montoreal[1]) >= parseFloat(montoapagar.value) ){
           
           if(parseFloat(montoapagar.value) < parseFloat(montoreal[1])){
             const Reserva = {
