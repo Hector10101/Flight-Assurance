@@ -22,7 +22,7 @@ export class VDetallesComponent implements OnInit {
    public codorigen: any;
    public coddestino: any;
 
-   private Bundle: any =[];
+   private Bundle: any = [];
    public listado: any = [];
 
 
@@ -31,8 +31,8 @@ export class VDetallesComponent implements OnInit {
    }
 
   ngOnInit(): void {
-   this.Bundle =  JSON.parse(localStorage.getItem("VueloElegido") || '{}');
-    if(this.Bundle.nombreOrigen != null){
+   this.Bundle =  JSON.parse(localStorage.getItem('VueloElegido') || '{}');
+   if (this.Bundle.nombreOrigen != null){
       this.fecha = this.Bundle.fechaSalida;
       this.aereolinea = this.Bundle.aereolinea;
       this.precio = this.Bundle.precio;
@@ -46,20 +46,22 @@ export class VDetallesComponent implements OnInit {
       this.router.navigate(['/', 'vuelos']);
     }
 
-    console.log(this.Bundle.nombreOrigen);
+   console.log(this.Bundle.nombreOrigen);
   }
 
 
+  // tslint:disable-next-line: typedef
   getListadodePaises(){
     this.VuelosServices.ObtenerNombredePaises().subscribe((data: {}) => {
         this.listado = data;
       });
     }
 
+    // tslint:disable-next-line: typedef
     onclickCompletarDatos(){
-      if(this.origen != null){
+      if (this.origen != null){
         this.router.navigate(['/', 'completarDatos']);
       }
     }
- 
+
 }

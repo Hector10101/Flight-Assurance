@@ -51,7 +51,7 @@ export class VuelosComponent implements OnInit {
 
 
   private i: any;
-  private x: any;
+ 
   private nOrigen: any;
   private nDestino: any;
 
@@ -185,16 +185,16 @@ export class VuelosComponent implements OnInit {
               }
             }
       for ( const nombre of this.TodoslosVuelos.Places){
-              // tslint:disable-next-line: triple-equals
-              if (Valor.OutboundLeg.OriginId == nombre.PlaceId){
-                this.nOrigen = nombre.IataCode;
-               }
-              // tslint:disable-next-line: triple-equals
-              if (Valor.OutboundLeg.DestinationId == nombre.PlaceId){
-                this.nDestino = nombre.IataCode;
+            // tslint:disable-next-line: triple-equals
+            if (Valor.OutboundLeg.OriginId == nombre.PlaceId){
+              this.nOrigen = nombre.IataCode;
               }
-              this.ruta[this.i] = this.nOrigen + ' a ' + this.nDestino;
+            // tslint:disable-next-line: triple-equals
+            if (Valor.OutboundLeg.DestinationId == nombre.PlaceId){
+              this.nDestino = nombre.IataCode;
             }
+            this.ruta[this.i] = this.nOrigen + ' a ' + this.nDestino;
+          }
     }
     // tslint:disable-next-line: typedef
     // tslint:disable-next-line: typedef
@@ -363,7 +363,7 @@ export class VuelosComponent implements OnInit {
              // console.log(nombrepais);
             }
 
-            var fechamayor, fechamenor;
+            var fechamayor, fechamenor, X;
 
             for(let fechas of this.TodoslosVuelos['Quotes']){
               if((fechas['OutboundLeg'].OriginId == this.codigolugarOrigen) &&
@@ -372,12 +372,14 @@ export class VuelosComponent implements OnInit {
                   fechamenor = fechas['OutboundLeg'].DepartureDate;
               }
             }
-
+            
+             console.log("Esta es X: " + X);
             console.log(fechamayor +" > " + fechamenor);
 
             var strfechallegada = fechamayor.split("T");
             var strfechasalida = fechamenor.split("T");
 
+            
             let param: parametros = {ruta:string[0], fecha: string[1], aereolinea:string[2], 
             precio:string[3], nombreOrigen: origin, 
             nombreDestino: destination, codOrigen: this.str[0], codDestino:this.str[1],

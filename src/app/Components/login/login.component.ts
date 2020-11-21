@@ -3,6 +3,7 @@ import {RouterModule, Routes, Router } from '@angular/router';
 
 import {AutenticacionService} from 'src/app/servicios/autenticacion.service';
 import { authuser } from 'src/app/modelo/authuser.models';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -13,8 +14,8 @@ import { authuser } from 'src/app/modelo/authuser.models';
 export class LoginComponent implements OnInit {
 
 
-  public Cliente: any=[]; 
-  public Administrador: any =[];
+  public Cliente: any = [];
+  public Administrador: any = [];
 
 
   constructor(private ApiService: AutenticacionService, private router: Router) { }
@@ -25,44 +26,59 @@ export class LoginComponent implements OnInit {
   }
 
 
+  // tslint:disable-next-line: typedef
   getCliente(){
     this.ApiService.ObtenerClientes().subscribe((data: {}) => {
         this.Cliente = data;
         console.log(this.Cliente);
-      })
+      });
     }
 
+    // tslint:disable-next-line: typedef
     getAdministrador(){
       this.ApiService.ObtenerAdministrador().subscribe((data: {}) => {
           this.Administrador = data;
           console.log(this.Administrador);
-        })
+        });
       }
 
+    // tslint:disable-next-line: typedef
     Loguearse(usuario: HTMLInputElement, password: HTMLInputElement){
-     for(let cliente of this.Cliente){
-        if((usuario.value == cliente["usuario"]) && (password.value == cliente["password"])){
+     for (const cliente of this.Cliente){
+        // tslint:disable-next-line: triple-equals
+        if ((usuario.value == cliente.usuario) && (password.value == cliente.password)){
          // console.log("cliente encontrado");
-         let userAutenticado : authuser = {id:cliente["id"], nombre:cliente["nombre"],segundonombre:"",apellido:cliente["apellido"],
-         cedula:cliente["cedula"], pasaporte:cliente["pasaporte"], fechadenacimiento:cliente["fecha_nacimiento"], email:cliente["email"],
-         telefono:cliente["telefono"], direccion:cliente["direccion"], nivelacceso: "cliente"};
+         const userAutenticado: authuser = {id: cliente.id, nombre: cliente.nombre, segundonombre: '', apellido: cliente.apellido,
+         cedula: cliente.cedula, pasaporte: cliente.pasaporte, fechadenacimiento: cliente.fecha_nacimiento, email: cliente.email,
+         telefono: cliente.telefono, direccion: cliente.direccion, nivelacceso: 'cliente'};
          this.ApiService.UsuarioLogueado(userAutenticado);
-          localStorage.setItem("nombreUsuario", cliente["nombre"]);
+         localStorage.setItem('nombreUsuario', cliente.nombre);
 
          this.router.navigate(['/', '']);
+
+         swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: cliente.usuario + '\n' + '¡Estas de regreso!',
+            showConfirmButton: false,
+            timer: 1500
+          });
+
         }
       }
-      for(let administrador of this.Administrador){
-        if((usuario.value == administrador["usuario"]) && (password.value == administrador["password"])){
-          //console.log("administrador encontrado");
-          let userAutenticado : authuser = {id:administrador["id"], nombre:administrador["nombre"],segundonombre:"",apellido:administrador["apellido"],
-         cedula:administrador["cedula"], pasaporte:administrador["pasaporte"], fechadenacimiento:administrador["fecha_nacimiento"], email:administrador["email"],
-         telefono: administrador["telefono"], direccion:administrador["direccion"], nivelacceso: "administrador"};
+     for (const administrador of this.Administrador){
+        // tslint:disable-next-line: triple-equals
+        if ((usuario.value == administrador.usuario) && (password.value == administrador.password)){
+          const userAutenticado: authuser = {id: administrador.id, nombre: administrador.nombre,
+            segundonombre: '', apellido: administrador.apellido,
+            cedula: administrador.cedula, pasaporte: administrador.pasaporte,
+            fechadenacimiento: administrador.fecha_nacimiento, email: administrador.email,
+            telefono: administrador.telefono, direccion: administrador.direccion, nivelacceso: 'administrador'};
           this.ApiService.UsuarioLogueado(userAutenticado);
-          localStorage.setItem("nombreUsuario", administrador["nombre"]);
+          localStorage.setItem('nombreUsuario', administrador.nombre);
           this.router.navigate(['/', '']);
         }else{
-          console.log("no hay encontrado");
+          console.log('no hay encontrado');
         }
       }
     }

@@ -38,8 +38,8 @@ export class ContactanosComponent implements OnInit {
       this.Asunto="";
       this.Correo="";
       this.Mensaje="";
-      },error =>{
-        swal.fire('Mensaje no Enviado',':(', 'error');
+    },error =>{
+        swal.fire('El mensaje no pudo ser enviado',':(', 'error');
       });
    }
 }

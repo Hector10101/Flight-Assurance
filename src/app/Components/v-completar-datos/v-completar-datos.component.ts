@@ -20,44 +20,49 @@ export class VCompletarDatosComponent implements OnInit {
   public telefono: any;
   public direccion: any;
 
-  public id =0;
-  public nivelacceso="";
+  public id = 0;
+  public nivelacceso = '';
   public Bundle: any = [];
 
-  constructor(private VuelosServices: VuelosService,private Autenticacion: AutenticacionService, private router: Router) { }
+  constructor(private VuelosServices: VuelosService, private Autenticacion: AutenticacionService, private router: Router) { }
 
   ngOnInit(): void {
-    this.Bundle = JSON.parse(localStorage.getItem("usuario_logueado") || '{}');
-    if(this.Bundle.nombre != null){
-      this.id= this.Bundle.id;
-      this.nivelacceso= this.Bundle.nivelacceso;
+    this.Bundle = JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+    if (this.Bundle.nombre != null){
+      this.id = this.Bundle.id;
+      this.nivelacceso = this.Bundle.nivelacceso;
       this.primernombre = this.Bundle.nombre;
       this.apellido = this.Bundle.apellido;
       this.cedula = this.Bundle.cedula;
       this.pasaporte = this.Bundle.pasaporte;
       this.fechadenacimiento = this.Bundle.fechadenacimiento;
       this.email = this.Bundle.email;
-      this.telefono= this.Bundle.telefono;
+      this.telefono = this.Bundle.telefono;
       this.direccion = this.Bundle.direccion;
       this.segundonombre = this.Bundle.segundonombre;
     }
-    
+
 
 
   }
 
 
-  onClickCompletarDatos(newprimernombre: HTMLInputElement,newsegundonombre: HTMLInputElement,newapellido: HTMLInputElement,
-    newcedula: HTMLInputElement,newpasaporte: HTMLInputElement,newfechanac: HTMLInputElement,newemail: HTMLInputElement,
-    newtelefono: HTMLInputElement, newdireccion: HTMLInputElement){
+  // tslint:disable-next-line: typedef
+  onClickCompletarDatos(newprimernombre: HTMLInputElement, newsegundonombre: HTMLInputElement, newapellido: HTMLInputElement,
+                        // tslint:disable-next-line: max-line-length
+                        newcedula: HTMLInputElement, newpasaporte: HTMLInputElement, newfechanac: HTMLInputElement, newemail: HTMLInputElement,
+                        newtelefono: HTMLInputElement, newdireccion: HTMLInputElement){
 
       console.log(newcedula.value);
-      if(newprimernombre.value == '' || newapellido.value == '' || newcedula.value == '' 
-        || newpasaporte.value == '' || newfechanac.value == '' || newemail.value == '' 
+      // tslint:disable-next-line: triple-equals
+      if (newprimernombre.value == '' || newapellido.value == '' || newcedula.value == ''
+        // tslint:disable-next-line: triple-equals
+        || newpasaporte.value == '' || newfechanac.value == '' || newemail.value == ''
+        // tslint:disable-next-line: triple-equals
         || newtelefono.value == '' || newdireccion.value == ''){
 
-          //mensaje de llenar campos
-          console.log("llene los campos");
+          // mensaje de llenar campos
+          console.log('llene los campos');
         }else{
 
           const usuarioComprando = {

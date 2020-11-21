@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AutenticacionService} from 'src/app/servicios/autenticacion.service'
+import {AutenticacionService} from 'src/app/servicios/autenticacion.service';
 import {RouterModule, Routes, Router } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -14,7 +15,10 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  PostearCliente(nombre: HTMLInputElement,apellido: HTMLInputElement,cedula: HTMLInputElement,pasaporte: HTMLInputElement,email: HTMLInputElement,nombreusuario: HTMLInputElement,password: HTMLInputElement, telefono: HTMLInputElement) {
+  // tslint:disable-next-line: typedef
+  PostearCliente(nombre: HTMLInputElement, apellido: HTMLInputElement,
+                 cedula: HTMLInputElement, pasaporte: HTMLInputElement, email: HTMLInputElement,
+                 nombreusuario: HTMLInputElement, password: HTMLInputElement, telefono: HTMLInputElement) {
     const cliente = {
       cedula: cedula.value,
       pasaporte: pasaporte.value,
@@ -22,17 +26,18 @@ export class RegistroComponent implements OnInit {
       apellido: apellido.value,
       email: email.value,
       telefono: telefono.value,
-      direccion: "",
-      genero: "",
-      fecha_nacimiento: "",
+      direccion: '',
+      genero: '',
+      fecha_nacimiento: '',
       usuario: nombreusuario.value,
       password: password.value
 
     };
     this.AutenticacionServices.PostearCliente(cliente).subscribe((registro: {}) => {
       this.router.navigate(['/', 'login']);
-    },error =>{
-      //Mensaje de Error
+      swal.fire( cliente.usuario, '¡Bienvenido!', 'success');
+    }, error => {
+      swal.fire( 'No hemos podido registrarte', 'Vuelve a intentarlo', 'error');
     });
   }
 }
