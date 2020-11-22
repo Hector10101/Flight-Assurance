@@ -69,10 +69,10 @@ export class FinCompraComponent implements OnInit {
         this.makeRandom(lengthOfCode, possible);
         this.getFactura();
         this.getAsiento();
-      /*  localStorage.removeItem('usuario_logueado');
-        localStorage.removeItem('nombreUsuario');           //Descomentar despues de terminar de probar
+      //  localStorage.removeItem('usuario_logueado');
+        //localStorage.removeItem('nombreUsuario');           //Descomentar despues de terminar de probar
         localStorage.removeItem('VueloElegido');
-        localStorage.removeItem('pago');*/
+        localStorage.removeItem('pago');
 
       }
       else{
@@ -112,7 +112,7 @@ export class FinCompraComponent implements OnInit {
         }*/
         console.log(this.Asientos);
         this.numeroasiento = this.Asientos[Math.floor(Math.random() * this.Asientos.length)].no_asiento;
-       // this.postFactura();  //Descomentar despues de Arreglar
+        this.postFactura();  //Descomentar despues de Arreglar
       });
     }
 
@@ -135,7 +135,7 @@ export class FinCompraComponent implements OnInit {
         fechaentrada: this.fechallegada,
         horasalida: this.horasalida,
         horaentrada: this.horallegada,
-        tipo: '',
+        tipo: this.tipo,
         precio: this.precio
 
       };

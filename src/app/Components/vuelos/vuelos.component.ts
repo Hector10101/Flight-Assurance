@@ -295,6 +295,7 @@ export class VuelosComponent implements OnInit {
         month = '0' + month.toString();
         }
         fecha = year.toString() + '-' + month + '-' + day;
+        
         return fecha;
         }
         getCurrentDateMasUno(): string{
@@ -377,9 +378,7 @@ export class VuelosComponent implements OnInit {
 
             for (const fechas of this.TodoslosVuelos.Quotes){
               // tslint:disable-next-line: triple-equals
-              if ((fechas.OutboundLeg.OriginId == this.codigolugarOrigen) &&
-                // tslint:disable-next-line: triple-equals
-                (fechas.OutboundLeg.DestinationId == this.codigolugarDestino)){
+              if ((fechas.OutboundLeg.OriginId == this.codigolugarOrigen) && (fechas.OutboundLeg.DestinationId == this.codigolugarDestino)){
                   fechamayor = fechas.QuoteDateTime;
                   fechamenor = fechas.OutboundLeg.DepartureDate;
               }
