@@ -20,15 +20,17 @@ export class VDetallesComponent implements OnInit {
    public fechallegada: any;
    public horallegada: any;
    public horasalida: any;
-   public clase= "economica";
+   public clase = 'economica';
+   public precioClase: any;
+   public cantidadClase: any;
 
    public codorigen: any;
    public coddestino: any;
 
    private Bundle: any = [];
+   private Bundle2: any = [];
    public listado: any = [];
    public terminal: any;
-
 
   constructor(private VuelosServices: VuelosService, private router: Router) {
     this.getListadodePaises();
@@ -36,6 +38,12 @@ export class VDetallesComponent implements OnInit {
 
   ngOnInit(): void {
    this.Bundle =  JSON.parse(localStorage.getItem('VueloElegido') || '{}');
+   this.Bundle2 =  JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+   if (this.Bundle2.nivelacceso !== 'administrador'){
+    this.router.navigate(['/', 'detallesvuelo']);
+    }else{
+      this.router.navigate(['/', 'facturas']);
+    }
    if (this.Bundle.nombreOrigen != null){
       this.fecha = this.Bundle.fechaSalida;
       this.aereolinea = this.Bundle.aereolinea;
@@ -47,19 +55,20 @@ export class VDetallesComponent implements OnInit {
       this.fechasalida = this.Bundle.fechaSalida;
       this.fechallegada = this.Bundle.fechaLlegada;
       this.ruta = this.Bundle.ruta;
-      this.horallegada= this.Bundle.horaLlegada;
+      this.horallegada = this.Bundle.horaLlegada;
       this.horasalida = this.Bundle.horaSalida;
-
-    let possible = "A1B2C3D4";
-    const lengthOfCode = 2;
-    this.makeRandom(lengthOfCode, possible);
+      this.precioClase = this.Bundle.precio.split('$');
+      this.precio = '$' + this.precioClase[1];
+      const possible = 'A1B2C3D4';
+      const lengthOfCode = 2;
+      this.makeRandom(lengthOfCode, possible);
     }else{
       this.router.navigate(['/', 'vuelos']);
     }
 
    console.log(this.Bundle.nombreOrigen);
   }
- 
+
 
   // tslint:disable-next-line: typedef
   getListadodePaises(){
@@ -93,32 +102,46 @@ export class VDetallesComponent implements OnInit {
       }
     }
 
+     // tslint:disable-next-line: typedef
      makeRandom(lengthOfCode: number, possible: string) {
-      let text = "";
+      let text = '';
       for (let i = 0; i < lengthOfCode; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
       }
-        this.terminal= "Puerta " + text;
-        return text;
+      this.terminal = 'Puerta ' + text;
+      return text;
     }
 
+    // tslint:disable-next-line: typedef
     filtroClase(clase: number){
 
       if (clase === 1){
-        //ejecutiva
-        this.clase = "Ejecutiva";
-        
-      }else if (clase === 2){
-        //primera
-        this.clase = "Primera";
-      }else{
-        //economica
-        this.clase = "Economica";
-       
-      }
+        // ejecutiva
 
+        console.log(this.precio);
+        this.precio =  this.precioClase[1];
+        // tslint:disable-next-line: radix
+        this.cantidadClase = parseInt(this.precio) + 35;
+        this.precio = '$' + this.cantidadClase;
+        this.clase = 'Ejecutiva';
+
+      }else if (clase === 2){
+        this.precio =  this.precioClase[1];
+        // primera
+        // tslint:disable-next-line: radix
+        this.cantidadClase = parseInt(this.precio) + 65;
+        this.precio =  '$' + this.cantidadClase;
+        this.clase = 'Primera';
+      }else{
+        this.precio = '$' + this.precioClase[1];
+        // economica
+        this.clase = 'Economica';
+      }
     }
-    
-  
+
+    // tslint:disable-next-line: typedef
+    goBack(){
+      localStorage.removeItem('VueloElegido');
+    }
 
 }

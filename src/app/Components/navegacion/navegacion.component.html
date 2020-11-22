@@ -1,8 +1,17 @@
 <div class="Conten-Menu">
+  <div class="Conte-all escudo">
+    <div class="row">
+      <div class="col-lg-12">
+        <img src="../../../assets/img/escudo.png" width="40" height="40">
+        <span class="ml-2 txt-negro txt.RD">República Dominicana</span>
+      </div>
+    </div>
+  </div>
     <nav class="Conte-all navbar navbar-expand-lg navbar-light bg-light">
+      
         <a class="navbar-brand" href="/" [routerLink]="['']">
             <h1 class="NombrePage" >Flight Assurance</h1> 
-            <img src="../../../assets/img/planelogo.png" width="30" height="30" class="imgLogo align-top" alt="" loading="lazy">
+            <img src="../../../assets/img/planelogo.png" width="45" height="45" class="imgLogo align-top" alt="" loading="lazy">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -23,16 +32,16 @@
                 <a class="nav-link links" href="/" [routerLink]="['../contactanos']" id="contactanos"> Contactanos</a>
             </li>
             <a class="pointer" (click)="onclickLogueado();">
-                <li class="nav-item btn-IniciarSS">
-                    <div class="Contenedor-InicioSS">
-                        <div class="img-InicioSS">
-                            <img src="../../../assets/img/user.png" width="30" height="30" class=" " alt="" loading="lazy">
-                        </div>
-                        <div class="txt-InicioSS">
-                            <span class="nav-link txtSS" href="#">{{boton}}</span>
-                        </div>
-                    </div>
-                </li>
+              <li class="nav-item btn-IniciarSS">
+                  <div class="Contenedor-InicioSS">
+                      <div class="img-InicioSS">
+                          <img src="../../../assets/img/user.png" width="30" height="30" class=" " alt="" loading="lazy">
+                      </div>
+                      <div class="txt-InicioSS">
+                          <span class="nav-link txtSS" href="#">{{boton}}</span>
+                      </div>
+                  </div>
+              </li>
             </a>
           </ul>
         </div>

@@ -1,6 +1,15 @@
 .completar-c{
     min-height: 100vh;
 }
+.btnGoBack{
+    background-color: #F7FFF7;
+    display: inline-block;
+    border-radius: 100%;
+    padding: 15px;
+    position: absolute;
+    top: -15px;
+    left: -8px;
+}
 .Conte-C{
     display: flex;
     justify-content: center;

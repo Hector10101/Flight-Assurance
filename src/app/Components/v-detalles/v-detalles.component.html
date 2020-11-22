@@ -1,11 +1,15 @@
 <app-navegacion></app-navegacion>
 <div class="bg-General detalles-c">
     <div class="Conte-all"> 
-    <div class="btnGoBack">
-        <img src="../../../assets/img/left-arrow.png" width="30" height="30" class=" " alt="" loading="lazy">
-    </div>
         <div class="row Conte-C">
-            <div class="col-lg-8">
+            
+            <div class="col-lg-9">
+                <a (click)="goBack()" href="/" [routerLink]="['../vuelos']">
+                    <div class="btnGoBack">
+                        <img src="../../../assets/img/left-arrow.png" width="30" height="30" class=" " alt="" loading="lazy">
+                    </div>
+                </a>
+                
                 <div class="conten-datos">
                     <h1 class="txt-negro titulo">Detalles del vuelo</h1>
                     <h6><span class="txt-info">Origen: </span><span id="origen">{{origen}} ({{codorigen}})</span></h6>
@@ -18,7 +22,7 @@
 
                     <div class="txt-btn-PaRe"> 
                         <h6><span class="txt-info">Costo del vuelo: </span><span id="precio">{{precio}}</span></h6>
-                        <button type="submit" class="mt-2 btn btn-PaRe" ><span class="txt-PaRe" (click)="onclickCompletarDatos();">Pagar/Reservar</span></button>
+                        <button type="submit" class="mt-2 btn btn-PaRe" (click)="onclickCompletarDatos();" ><span class="txt-PaRe" >Pagar/Reservar</span></button>
                     </div>
                 </div>
             </div>
@@ -27,16 +31,16 @@
                     <div class="g-radio-btn"> 
                         <span class="txt-negro txt-clase">Clase del vuelo</span>
                         <div class="custom-control custom-radio mt-3 mb-1">
-                            <input type="radio" id="customRadioEco" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label txt-radio" for="customRadioEco" (click)="filtroClase(0)">Economica</label>
+                            <input type="radio" id="customRadioEco" name="customRadio" class="custom-control-input" checked (click)="filtroClase(0)">
+                            <label class="custom-control-label txt-radio" for="customRadioEco" >Economica</label>
                         </div>
                         <div class="custom-control custom-radio mb-1">
-                            <input type="radio" id="customRadioEje" name="customRadio" class="custom-control-input  ">
-                            <label class="custom-control-label txt-radio" for="customRadioEje" (click)="filtroClase(1)">Ejecutiva</label>
+                            <input type="radio" id="customRadioEje" name="customRadio" class="custom-control-input" (click)="filtroClase(1)">
+                            <label class="custom-control-label txt-radio" for="customRadioEje" >Ejecutiva</label>
                         </div>
                         <div class="custom-control custom-radio mb-1 ">
-                            <input type="radio" id="customRadioP" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label txt-radio" for="customRadioP" (click)="filtroClase(2)">Primera</label>
+                            <input type="radio" id="customRadioP" name="customRadio" class="custom-control-input" (click)="filtroClase(2)">
+                            <label class="custom-control-label txt-radio" for="customRadioP" >Primera</label>
                         </div>
                     </div>  
                 </div>

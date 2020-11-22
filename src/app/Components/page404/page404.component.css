@@ -1,0 +1,20 @@
+.btn-inicio{
+    background-color: #FFE66D;
+    padding: 6px 30px 6px 30px;
+    border-radius: 25px;
+}
+
+.Conte-404{
+    min-height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.txt-pagar{
+    font-weight: 600;
+    font-size: 1.2em;
+    color: #292F36;
+}

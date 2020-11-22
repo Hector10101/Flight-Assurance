@@ -67,7 +67,7 @@ export class NavegacionComponent implements OnInit {
   onclickLogueado(){
     if (this.usuarioLogueado){
       swal.fire({
-        title: '¿Está seguro que quieres?',
+        title: '¿Estás seguro que quieres salir?',
         text: '¿Realmente te vas?',
         icon: 'question',
         showCancelButton: true,

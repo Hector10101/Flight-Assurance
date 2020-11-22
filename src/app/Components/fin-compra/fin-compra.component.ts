@@ -33,7 +33,7 @@ export class FinCompraComponent implements OnInit {
   public Factura: any = [];
 
   public tipo: any;
-  public montopagado:any;
+  public montopagado: any;
 
 
 
@@ -43,53 +43,59 @@ export class FinCompraComponent implements OnInit {
     this.Bundle = JSON.parse(localStorage.getItem('VueloElegido') || '{}');
     this.pago = JSON.parse(localStorage.getItem('pago') || '{}');
     this.datosUsuario = JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+    if (this.datosUsuario.nivelacceso !== 'administrador'){
+      if (this.Bundle.nombreOrigen != null && this.datosUsuario.nombre != null){
+        this.terminal = this.Bundle.terminal;
+        this.fechasalida = this.Bundle.fechaSalida;
+        this.fechallegada = this.Bundle.fechaLlegada;
+        this.horasalida = this.Bundle.horaSalida;
+        this.horallegada = this.Bundle.horaLlegada;
+        this.precio = this.Bundle.precio;
+        this.nombrecliente = this.datosUsuario.nombre;
+        this.apellidocliente = this.datosUsuario.apellido;
+        this.telefono = this.datosUsuario.telefono;
 
-    if (this.Bundle.nombreOrigen != null && this.datosUsuario.nombre != null){
-      this.terminal = this.Bundle.terminal;
-      this.fechasalida = this.Bundle.fechaSalida;
-      this.fechallegada = this.Bundle.fechaLlegada;
-      this.horasalida = this.Bundle.horaSalida;
-      this.horallegada = this.Bundle.horaLlegada;
-      this.precio = this.Bundle.precio;
-      this.nombrecliente = this.datosUsuario.nombre;
-      this.apellidocliente = this.datosUsuario.apellido;
-      this.telefono = this.datosUsuario.telefono;
+        this.codigoorigen = this.Bundle.codOrigen;
+        this.nombreorigen = this.Bundle.nombreOrigen;
+        this.codigodestino = this.Bundle.codDestino;
+        this.nombredestino = this.Bundle.nombreDestino;
+        this.clasedevuelo = this.Bundle.clasedevuelo;
 
-      this.codigoorigen = this.Bundle.codOrigen;
-      this.nombreorigen = this.Bundle.nombreOrigen;
-      this.codigodestino = this.Bundle.codDestino;
-      this.nombredestino = this.Bundle.nombreDestino;
-      this.clasedevuelo = this.Bundle.clasedevuelo;
+        this.tipo = this.pago.tipo;
+        this.montopagado = this.pago.precio;
 
-      this.tipo = this.pago.tipo;
-      this.montopagado = this.pago.precio;
+        const possible = '1234567890';
+        const lengthOfCode = 3;
+        this.makeRandom(lengthOfCode, possible);
+        this.getFactura();
+        this.getAsiento();
+      /*  localStorage.removeItem('usuario_logueado');
+        localStorage.removeItem('nombreUsuario');           //Descomentar despues de terminar de probar
+        localStorage.removeItem('VueloElegido');
+        localStorage.removeItem('pago');*/
 
-
-      let possible = "1234567890";
-      const lengthOfCode = 3;
-      this.makeRandom(lengthOfCode, possible);
-      this.getFactura();
-      this.getAsiento();
-    /*  localStorage.removeItem('usuario_logueado');
-      localStorage.removeItem('nombreUsuario');           //Descomentar despues de terminar de probar
-      localStorage.removeItem('VueloElegido');
-      localStorage.removeItem('pago');*/
-
+      }
+      else{
+        this.router.navigate(['/', 'vuelos']);
+      }
+    }else{
+      this.router.navigate(['/', 'facturas']);
     }
-    else{
-      this.router.navigate(['/', 'vuelos']);
-    }
+
+
   }
 
+  // tslint:disable-next-line: typedef
   makeRandom(lengthOfCode: number, possible: string) {
-    let text = "";
+    let text = '';
     for (let i = 0; i < lengthOfCode; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
-      this.codigovuelo= text;
-      return text;
+    this.codigovuelo = text;
+    return text;
   }
 
+  // tslint:disable-next-line: typedef
   getAsiento(){
     this.authServices.ObtenerAsientos().subscribe((data: {}) => {
         this.Asientos = data;
@@ -105,17 +111,19 @@ export class FinCompraComponent implements OnInit {
           }
         }*/
         console.log(this.Asientos);
-        this.numeroasiento = this.Asientos[Math.floor(Math.random() * this.Asientos.length)]['no_asiento'];
+        this.numeroasiento = this.Asientos[Math.floor(Math.random() * this.Asientos.length)].no_asiento;
        // this.postFactura();  //Descomentar despues de Arreglar
       });
     }
 
+    // tslint:disable-next-line: typedef
     getFactura(){
       this.authServices.ObtenerFactura().subscribe((data: {}) => {
           this.Factura = data;
         });
       }
 
+    // tslint:disable-next-line: typedef
     postFactura(){
 
       const factura = {
@@ -129,11 +137,11 @@ export class FinCompraComponent implements OnInit {
         horaentrada: this.horallegada,
         tipo: '',
         precio: this.precio
-  
-      }
-       this.authServices.PostearFactura(factura).subscribe((registro: {}) => {
+
+      };
+      this.authServices.PostearFactura(factura).subscribe((registro: {}) => {
 
        });
     }
-      
+
 }

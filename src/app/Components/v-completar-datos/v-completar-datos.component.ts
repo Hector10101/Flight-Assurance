@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {VuelosService} from 'src/app/servicios/vuelos.service';
 import {AutenticacionService} from 'src/app/servicios/autenticacion.service';
 import {RouterModule, Routes, Router, Data } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-v-completar-datos',
@@ -23,11 +24,20 @@ export class VCompletarDatosComponent implements OnInit {
   public id = 0;
   public nivelacceso = '';
   public Bundle: any = [];
+  public Bundle2: any = [];
+  public Bundle3: any = [];
 
   constructor(private VuelosServices: VuelosService, private Autenticacion: AutenticacionService, private router: Router) { }
 
   ngOnInit(): void {
     this.Bundle = JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+    this.Bundle3 =  JSON.parse(localStorage.getItem('VueloElegido') || '{}');
+    this.Bundle2 =  JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+    if (this.Bundle2.nivelacceso !== 'administrador'){
+      this.router.navigate(['/', 'completarDatos']);
+      }else{
+        this.router.navigate(['/', 'facturas']);
+      }
     if (this.Bundle.nombre != null){
       this.id = this.Bundle.id;
       this.nivelacceso = this.Bundle.nivelacceso;
@@ -41,9 +51,9 @@ export class VCompletarDatosComponent implements OnInit {
       this.direccion = this.Bundle.direccion;
       this.segundonombre = this.Bundle.segundonombre;
     }
-
-
-
+    if (this.Bundle3.nombreOrigen == null){
+      this.router.navigate(['/', 'vuelos']);
+    }
   }
 
 
@@ -61,6 +71,9 @@ export class VCompletarDatosComponent implements OnInit {
         // tslint:disable-next-line: triple-equals
         || newtelefono.value == '' || newdireccion.value == ''){
 
+          swal.fire({
+            title: '¡Debes completar los campos!',
+          });
           // mensaje de llenar campos
           console.log('llene los campos');
         }else{
@@ -80,10 +93,6 @@ export class VCompletarDatosComponent implements OnInit {
           };
           this.Autenticacion.UsuarioLogueado(usuarioComprando);
           this.router.navigate(['/', 'pago']);
-
-
-
         }
-
   }
 }

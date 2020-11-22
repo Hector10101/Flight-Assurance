@@ -16,15 +16,20 @@ export class LoginComponent implements OnInit {
 
   public Cliente: any = [];
   public Administrador: any = [];
-
+  public Bundle: any = [];
 
   constructor(private ApiService: AutenticacionService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCliente();
     this.getAdministrador();
+    this.Bundle =  JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+    if (this.Bundle.nivelacceso !== 'administrador'){
+      this.router.navigate(['/', 'login']);
+    }else{
+      this.router.navigate(['/', 'facturas']);
+    }
   }
-
 
   // tslint:disable-next-line: typedef
   getCliente(){
@@ -54,7 +59,7 @@ export class LoginComponent implements OnInit {
          this.ApiService.UsuarioLogueado(userAutenticado);
          localStorage.setItem('nombreUsuario', cliente.nombre);
 
-         this.router.navigate(['/', '']);
+         this.router.navigate(['/', '/']);
 
          swal.fire({
             position: 'top-end',
@@ -76,7 +81,14 @@ export class LoginComponent implements OnInit {
             telefono: administrador.telefono, direccion: administrador.direccion, nivelacceso: 'administrador'};
           this.ApiService.UsuarioLogueado(userAutenticado);
           localStorage.setItem('nombreUsuario', administrador.nombre);
-          this.router.navigate(['/', '']);
+          swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: administrador.usuario + '\n' + '¡Bienvenido!',
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.router.navigate(['/', 'facturas']);
         }else{
           console.log('no hay encontrado');
         }

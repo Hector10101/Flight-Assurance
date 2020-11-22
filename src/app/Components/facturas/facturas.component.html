@@ -1,0 +1,85 @@
+
+<div class="bg-General detalles-c">
+    <div class="Conte-all">
+        <div class="row Conte-F">
+            <div class="col-lg-12">
+                <div class="row positionSticky txt-logo">
+                    <div class="col-lg-3 logo">
+                        <img src="../../../assets/img/planelogo.png" width="35" height="35" class="img-V-I  align-top">
+                        <h1 class="txt-negro text-logo">Flight Assurance</h1>
+                    </div>
+                    <div class="col-lg-9 ">
+                        <h1 class="txt-blanco ">Facturas Realizadas</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 ">
+
+                <div class="positionSticky">
+                    <div class="datos-cliente">
+                        <div>
+                            <div class="vueloInte">
+                                <h4 class="txt-negro">Tipo de factura</h4>
+                            </div>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadioT" checked name="RadioFacturas" class="custom-control-input" (click)="getfiltroFactura(0)">
+                            <!--(click)="filtroEscala(0)"-->
+                            <!---->
+                            <label class="custom-control-label " for="customRadioT">Todas</label>
+                        </div>
+        
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadioR" name="RadioFacturas" class="custom-control-input" (click)="getfiltroFactura(1)">
+                            <!--(click)="filtroEscala(1)"-->
+                            <label class="custom-control-label" for="customRadioR">Reservas</label>
+                        </div>
+        
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadioC"  name="RadioFacturas" class="custom-control-input" (click)="getfiltroFactura(2)">
+                            <!--(click)="filtroEscala(2)"-->
+                            <label class="custom-control-label"  for="customRadioC">Compras</label>
+                        </div>
+                    </div>
+                    <div class="conten-btn-imprimir">
+                        <button type="submit" class="btn btn-imprimir" (click)="onclickLogueado()"><span class="txt-btn">Cerrar Sesión</span></button>
+                    </div>  
+                </div>                
+            </div>
+            <div class="col-lg-9 ">
+                <table class="table">
+                    <thead class="cabeza">
+                        <tr>
+                            <th class="txt-blanco">Vuelo</th>
+                            <th class="txt-blanco">Asiento</th>
+                            <th class="txt-blanco">Cliente</th>
+                            <th class="txt-blanco">Tel. Cliente</th>
+                            <th class="txt-blanco">Fecha Salida</th>
+                            <th class="txt-blanco">Fecha Llegada</th>
+                            <th class="txt-blanco">Hora Salida</th>
+                            <th class="txt-blanco">Hora Llegada</th>
+                            <th class="txt-blanco">Total Pagado</th>
+                            <th class="txt-blanco">Tipo</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody class="cuerpo" >
+                        <tr *ngFor="let factura of Factura; let indice = index;">
+                            
+                            <td class="txt-negro">{{factura.codigo_vuelo}}</td>
+                            <td class="txt-negro">{{factura.asiento}}</td>
+                            <td class="txt-negro">{{factura.nombrecliente}}</td>
+                            <td class="txt-negro">{{factura.telefonocliente}}</td>
+                            <td class="txt-negro">{{factura.fechasalida}}</td>
+                            <td class="txt-negro">{{factura.fechaentrada}}</td>
+                            <td class="txt-negro">{{factura.horasalida}}</td>
+                            <td class="txt-negro">{{factura.horaentrada}}</td>
+                            <td class="txt-negro">{{factura.precio}}</td>
+                            <td class="txt-negro">{{factura.tipo}}</td>
+                        </tr>                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

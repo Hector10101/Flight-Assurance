@@ -1,0 +1,95 @@
+.detalles-c{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Conte-F{
+    padding-top: 55px;
+}
+.logo{
+    background-color: #F7FFF7;
+    border-radius: 55px;
+    padding: 10px 0 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-logo{
+    padding-left: 15px;
+    font-size: 1.5em;
+}
+.txt-logo{
+    margin-bottom: 15px;
+}
+.barra2{
+    margin-bottom: 15px;
+}
+.txt-info{
+    display: flex;
+    align-items: center;
+}
+
+.txt-color-v{
+    color: #4ECDC4;
+}
+
+.cabeza{
+    background-color:  #4ECDC4;
+}
+.cuerpo{
+    background-color: #F7FFF7;
+}
+th{
+    border: none !important;
+}
+
+th:first-child { 
+    border-top-left-radius: 15px; 
+}
+th:last-child {   
+    border-top-right-radius: 15px; 
+}
+
+tr:last-child td:first-child { 
+    border-bottom-left-radius: 15px; 
+}
+tr:last-child td:last-child { 
+    border-bottom-right-radius: 15px; 
+}
+
+.datos-cliente{
+    background-color: #4ECDC4;
+    border-radius: 25px;
+    padding: 55px 35px;
+}
+.btn-imprimir{
+    background-color: #FFE66D;
+    margin-right: 5px;
+    padding: 6px 30px 6px 30px;
+    border-radius: 25px;
+    -moz-box-shadow: 3px 3px 10px -2px  #b6b6b681;
+    -webkit-box-shadow: 3px 3px 10px -2px   #b6b6b681;
+    box-shadow: 3px 3px 10px -2px #b6b6b681;
+}
+.btn-imprimir:hover{
+    box-shadow:   1px 1px 4px 0px #292F36;
+}
+.btn-guardar:hover{
+    box-shadow:   1px 1px 4px 0px #292F36;
+}
+
+.txt-btn{
+    font-weight: 600;
+    font-size: 1.2em;
+}
+.positionSticky{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    padding-top: 55px;
+}
+
+.conten-btn-imprimir{
+    margin: 15px;
+}

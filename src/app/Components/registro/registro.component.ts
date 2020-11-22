@@ -9,10 +9,17 @@ import swal from 'sweetalert2';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+  public Bundle: any = [];
 
   constructor(private AutenticacionServices: AutenticacionService, private router: Router) { }
 
   ngOnInit(): void {
+    this.Bundle =  JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+    if (this.Bundle.nivelacceso !== 'administrador'){
+      this.router.navigate(['/', 'registro']);
+    }else{
+      this.router.navigate(['/', 'facturas']);
+    }
   }
 
   // tslint:disable-next-line: typedef

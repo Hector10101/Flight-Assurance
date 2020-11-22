@@ -10,6 +10,7 @@ import {RouterModule, Routes, Router, Data } from '@angular/router';
 export class PagoComponent implements OnInit {
 
   public Bundle: any = [];
+  public Bundle2: any = [];
   public montovuelo: any;
   public montominimo: any;
   public newnombretarjeta: any;
@@ -28,6 +29,10 @@ export class PagoComponent implements OnInit {
     else{
       this.router.navigate(['/', 'vuelos']);
     }
+    this.Bundle2 = JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+    if ((this.Bundle2.nombre == null) && (this.Bundle.nombreOrigen != null)){
+      this.router.navigate(['/', 'completarDatos']);
+     }
   }
 
 
@@ -45,21 +50,21 @@ export class PagoComponent implements OnInit {
        fechavencimiento.value != '' ||  CCV.value != '' || montoapagar.value != ''){
 
         if (parseFloat(montoapagar.value) >= this.montorealmitad && parseFloat(montoreal[1]) >= parseFloat(montoapagar.value) ){
-          
-          if(parseFloat(montoapagar.value) < parseFloat(montoreal[1])){
+
+          if (parseFloat(montoapagar.value) < parseFloat(montoreal[1])){
             const Reserva = {
               precio: montoapagar.value,
-              tipo: "Reserva"
-            }
-            localStorage.setItem("pago", JSON.stringify(Reserva));
+              tipo: 'Reserva'
+            };
+            localStorage.setItem('pago', JSON.stringify(Reserva));
           }else{
             const pago = {
               precio: montoapagar.value,
-              tipo: "Compra"
-            }
-            localStorage.setItem("pago", JSON.stringify(pago));
+              tipo: 'Compra'
+            };
+            localStorage.setItem('pago', JSON.stringify(pago));
           }
-          
+
           this.router.navigate(['/', 'finalizarCompra']);
         }else{
           console.log('mensaje EL MINIMO PARA PAGAR ES montorealmitad;');

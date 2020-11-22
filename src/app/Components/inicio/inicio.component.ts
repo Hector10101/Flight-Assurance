@@ -31,10 +31,17 @@ export class InicioComponent implements OnInit {
       public Parametros: any;
       private cortarfecha: any;
 
+      public Bundle: any = [];
   constructor(private VuelosServices: VuelosService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTodosLosVuelos(this.getCurrentDateMasCuatro(), 'DO', 'US');
+    this.Bundle =  JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+    if (this.Bundle.nivelacceso !== 'administrador'){
+      this.router.navigate(['', '']);
+    }else{
+      this.router.navigate(['/', 'facturas']);
+    }
   }
 
 

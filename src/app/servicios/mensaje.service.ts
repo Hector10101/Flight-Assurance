@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpHeaders  } from '@angular/common/http/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MensajeService {
 
+  // tslint:disable-next-line: variable-name
   constructor(private _http: HttpClient) { }
+  private api = 'https://intentoa.herokuapp.com/formulario';
 
-  sendMessage(body:any) {
-    return this._http.post('http://localhost:3000/formulario', body);
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+
+  // tslint:disable-next-line: typedef
+  sendMessage(body: any) {
+    return this._http.post(`${this.api}`, body, this.httpOptions);
   }
 }

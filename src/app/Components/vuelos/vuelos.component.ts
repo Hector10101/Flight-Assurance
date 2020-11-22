@@ -20,15 +20,12 @@ export class VuelosComponent implements OnInit {
     this.paisdestino = '';
     this.getListadodePaises();
     this.getTodosLosVuelos(this.getCurrentDateMasUno(), this.paisorigen, this.paisdestino, this.MontoGlobal , this.EscalaGlobal);
-
    }
   public listado: any = [];
   public paisorigen: any;
   public paisdestino: any;
   public Parametros: any;
   public Parametros1: any;
-
-
 
   public Nombrepaisorigen: any;
   public Nombrepaisdestino: any;
@@ -51,7 +48,7 @@ export class VuelosComponent implements OnInit {
 
 
   private i: any;
- 
+
   private nOrigen: any;
   private nDestino: any;
 
@@ -69,22 +66,29 @@ export class VuelosComponent implements OnInit {
       public MontoGlobal: any;
       public EscalaGlobal: any;
 
-      public str:any = []; //pasar parametros al detalle
-      public codigolugarOrigen:any;
-      public codigolugarDestino:any;
-      public strfecha:any = [];
+      public str: any = []; // pasar parametros al detalle
+      public codigolugarOrigen: any;
+      public codigolugarDestino: any;
+      public strfecha: any = [];
 
+
+      private Bundle: any = [];
 
   ngOnInit(): void {
-
-    //$('#vuelos').addClass('active');
+    this.Bundle =  JSON.parse(localStorage.getItem('usuario_logueado') || '{}');
+    if (this.Bundle.nivelacceso !== 'administrador'){
+      this.router.navigate(['/', 'vuelos']);
+     }else{
+       this.router.navigate(['/', 'facturas']);
+     }
+    // $('#vuelos').addClass('active');
   }
   // tslint:disable-next-line: typedef
   getListadodePaises(){
     this.VuelosServices.ObtenerNombredePaises().subscribe((data: {}) => {
         this.listado = data;
         // console.log(this.listado);
-      }); 
+      });
     }
     // tslint:disable-next-line: typedef
     getPaisesSeleccionado(){
@@ -340,50 +344,58 @@ export class VuelosComponent implements OnInit {
 
             this.getTodosLosVuelos(this.getCurrentDateMasUno(), this.paisorigen, this.paisdestino, this.MontoGlobal, this.EscalaGlobal);
           }
+          // tslint:disable-next-line: typedef
           onclickbtnInfo(params2: HTMLInputElement){
-            //console.log(params2.value);
-            var string = params2.value.split("/");
-            var origin="", destination="";
-            //console.log(string);
-            this.str = string[0].split(" a ");
+            // console.log(params2.value);
+            // tslint:disable-next-line: variable-name
+            const string = params2.value.split('/');
+            // tslint:disable-next-line: one-variable-per-declaration
+            let origin = '', destination = '';
+            // console.log(string);
+            this.str = string[0].split(' a ');
 
             console.log(this.str);
 
-            for(let nombrepais of this.TodoslosVuelos['Places']){
-              if(nombrepais.SkyscannerCode == this.str[0]){
-                //Origen
+            for (const nombrepais of this.TodoslosVuelos.Places){
+              // tslint:disable-next-line: triple-equals
+              if (nombrepais.SkyscannerCode == this.str[0]){
+                // Origen
                 origin = nombrepais.CountryName;
                 this.codigolugarOrigen = nombrepais.PlaceId;
               }
-              if(nombrepais.SkyscannerCode == this.str[1]){
-                //destino
+              // tslint:disable-next-line: triple-equals
+              if (nombrepais.SkyscannerCode == this.str[1]){
+                // destino
                 destination = nombrepais.CountryName;
                 this.codigolugarDestino = nombrepais.PlaceId;
               }
              // console.log(nombrepais);
             }
+            // tslint:disable-next-line: prefer-const
+            // tslint:disable-next-line: one-variable-per-declaration
+            let fechamayor, fechamenor;
 
-            var fechamayor, fechamenor, X;
-
-            for(let fechas of this.TodoslosVuelos['Quotes']){
-              if((fechas['OutboundLeg'].OriginId == this.codigolugarOrigen) &&
-                (fechas['OutboundLeg'].DestinationId == this.codigolugarDestino)){
+            for (const fechas of this.TodoslosVuelos.Quotes){
+              // tslint:disable-next-line: triple-equals
+              if ((fechas.OutboundLeg.OriginId == this.codigolugarOrigen) &&
+                // tslint:disable-next-line: triple-equals
+                (fechas.OutboundLeg.DestinationId == this.codigolugarDestino)){
                   fechamayor = fechas.QuoteDateTime;
-                  fechamenor = fechas['OutboundLeg'].DepartureDate;
+                  fechamenor = fechas.OutboundLeg.DepartureDate;
               }
             }
-            
-             console.log("Esta es X: " + X);
-            console.log(fechamayor +" > " + fechamenor);
+            console.log(fechamayor + ' > ' + fechamenor);
 
-            var strfechallegada = fechamayor.split("T");
-            var strfechasalida = fechamenor.split("T");
+            const strfechallegada = fechamayor.split('T');
+            const strfechasalida = fechamenor.split('T');
 
-            
-            let param: parametros = {ruta:string[0], fecha: string[1], aereolinea:string[2], 
-            precio:string[3], nombreOrigen: origin, 
-            nombreDestino: destination, codOrigen: this.str[0], codDestino:this.str[1],
-            fechaLlegada: strfechasalida[0], fechaSalida: strfechallegada[0], horaLlegada: strfechallegada[1], horaSalida:strfechasalida[1], clasedevuelo:null};  
+
+            const param: parametros = {ruta: string[0], fecha: string[1], aereolinea: string[2],
+            precio: string[3], nombreOrigen: origin,
+            nombreDestino: destination, codOrigen: this.str[0], codDestino: this.str[1],
+
+            fechaLlegada: strfechasalida[0], fechaSalida: strfechallegada[0],
+            horaLlegada: strfechallegada[1], horaSalida: strfechasalida[1], clasedevuelo: null};
 
             this.VuelosServices.setStorageParametro(param);
             this.router.navigate(['/', 'detallesvuelo']);

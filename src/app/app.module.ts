@@ -21,6 +21,8 @@ import { FinCompraComponent } from './Components/fin-compra/fin-compra.component
 import { VDetallesComponent } from './Components/v-detalles/v-detalles.component';
 import { from } from 'rxjs';
 import { MensajeService } from './servicios/mensaje.service';
+import { FacturasComponent } from './Components/facturas/facturas.component';
+import { Page404Component } from './Components/page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { MensajeService } from './servicios/mensaje.service';
     PagoComponent,
     FinCompraComponent,
     VDetallesComponent,
+    FacturasComponent,
+    Page404Component,
   ],
   imports: [
     BrowserModule,
